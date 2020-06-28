@@ -1,4 +1,4 @@
-# Secure-PHP-Login-adminLTE-3
+# Secure PHP Login adminLTE 3
 Secure PHP Login system with Admin LTE 3 and MySqli
 This app system have:
 <ul>
