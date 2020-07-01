@@ -11,7 +11,7 @@ $login = new UserClass();
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="<?php echo $serv; ?>index2.php"><b>Admin</b>LTE</a>
+            <a href="<?php echo PATH_SYS; ?>index2.php"><?php echo SITE_NAME; ?></a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
@@ -76,11 +76,11 @@ $login = new UserClass();
     <!-- /.login-box -->
 
     <!-- jQuery -->
-    <script src="<?php echo $serv; ?>plugins/jquery/jquery.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="<?php echo $serv; ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="<?php echo $serv; ?>dist/js/adminlte.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>dist/js/adminlte.min.js"></script>
 
 </body>
 </html>

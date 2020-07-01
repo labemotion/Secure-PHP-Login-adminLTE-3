@@ -1,3 +1,11 @@
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+require '../config/constants.php';
+require '../autoload.php';
+$definitions = new SiteDefinitions();
+?>
 <?php include '../elements/header.php' ?>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -11,7 +19,7 @@
             <!-- Brand Logo -->
             <a href="../index3.php" class="brand-link">
                 <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">AdminLTE 3</span>
+                <span class="brand-text font-weight-light"><?php echo SITE_NAME; ?></span>
             </a>
 
             <!-- Sidebar -->
@@ -250,19 +258,19 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="<?php echo $serv; ?>plugins/jquery/jquery.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="<?php echo $serv; ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- jQuery UI -->
-    <script src="<?php echo $serv; ?>plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Ekko Lightbox -->
-    <script src="<?php echo $serv; ?>plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="<?php echo $serv; ?>dist/js/adminlte.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="<?php echo $serv; ?>dist/js/demo.js"></script>
+    <script src="<?php echo PATH_SYS; ?>dist/js/demo.js"></script>
     <!-- Filterizr-->
-    <script src="<?php echo $serv; ?>plugins/filterizr/jquery.filterizr.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/filterizr/jquery.filterizr.min.js"></script>
     <!-- Page specific script -->
     <script>
         $(function () {

@@ -10,8 +10,8 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="<?php echo $serv; ?>index3.php" class="brand-link">
-                <img src="<?php echo $serv; ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+            <a href="<?php echo PATH_SYS; ?>index3.php" class="brand-link">
+                <img src="<?php echo PATH_SYS; ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">AdminLTE 3</span>
             </a>
 
@@ -20,7 +20,7 @@
                 <!-- Sidebar user (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="<?php echo $serv; ?>dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                        <img src="<?php echo PATH_SYS; ?>dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block">Alexander Pierce</a>
@@ -102,7 +102,7 @@
                                         <h4>Recent Activity</h4>
                                         <div class="post">
                                             <div class="user-block">
-                                                <img class="img-circle img-bordered-sm" src="<?php echo $serv; ?>dist/img/user1-128x128.jpg" alt="user image">
+                                                <img class="img-circle img-bordered-sm" src="<?php echo PATH_SYS; ?>dist/img/user1-128x128.jpg" alt="user image">
                                                 <span class="username">
                                                     <a href="#">Jonathan Burke Jr.</a>
                                                 </span>
@@ -122,7 +122,7 @@
 
                                         <div class="post clearfix">
                                             <div class="user-block">
-                                                <img class="img-circle img-bordered-sm" src="<?php echo $serv; ?>dist/img/user7-128x128.jpg" alt="User Image">
+                                                <img class="img-circle img-bordered-sm" src="<?php echo PATH_SYS; ?>dist/img/user7-128x128.jpg" alt="User Image">
                                                 <span class="username">
                                                     <a href="#">Sarah Ross</a>
                                                 </span>
@@ -141,7 +141,7 @@
 
                                         <div class="post">
                                             <div class="user-block">
-                                                <img class="img-circle img-bordered-sm" src="<?php echo $serv; ?>dist/img/user1-128x128.jpg" alt="user image">
+                                                <img class="img-circle img-bordered-sm" src="<?php echo PATH_SYS; ?>dist/img/user1-128x128.jpg" alt="user image">
                                                 <span class="username">
                                                     <a href="#">Jonathan Burke Jr.</a>
                                                 </span>
@@ -224,12 +224,12 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="<?php echo $serv; ?>plugins/jquery/jquery.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="<?php echo $serv; ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="<?php echo $serv; ?>dist/js/adminlte.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="<?php echo $serv; ?>dist/js/demo.js"></script>
+    <script src="<?php echo PATH_SYS; ?>dist/js/demo.js"></script>
 </body>
 </html>

@@ -22,8 +22,8 @@ $check = new CheckValidUser();
             <!-- Main Sidebar Container -->
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- Brand Logo -->
-                <a href="<?php echo $serv; ?>index3.php" class="brand-link">
-                    <img src="<?php echo $serv; ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <a href="<?php echo PATH_SYS; ?>index3.php" class="brand-link">
+                    <img src="<?php echo PATH_SYS; ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                     <span class="brand-text font-weight-light">AdminLTE 3</span>
                 </a>
 
@@ -70,7 +70,7 @@ $check = new CheckValidUser();
                                     <div class="card-body box-profile">
                                         <div class="text-center">
                                             <img class="profile-user-img img-fluid img-circle"
-                                                 src="<?php echo $serv; ?>upload/<?php echo USERS_AVATARS; ?>"
+                                                 src="<?php echo PATH_SYS; ?>upload/<?php echo USERS_AVATARS; ?>"
                                                  alt="User profile picture">
                                         </div>
 
@@ -153,7 +153,7 @@ $check = new CheckValidUser();
                                                 <!-- Post -->
                                                 <div class="post">
                                                     <div class="user-block">
-                                                        <img class="img-circle img-bordered-sm" src="<?php echo $serv; ?>dist/img/user1-128x128.jpg" alt="user image">
+                                                        <img class="img-circle img-bordered-sm" src="<?php echo PATH_SYS; ?>dist/img/user1-128x128.jpg" alt="user image">
                                                         <span class="username">
                                                             <a href="#">Jonathan Burke Jr.</a>
                                                             <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
@@ -186,7 +186,7 @@ $check = new CheckValidUser();
                                                 <!-- Post -->
                                                 <div class="post clearfix">
                                                     <div class="user-block">
-                                                        <img class="img-circle img-bordered-sm" src="<?php echo $serv; ?>dist/img/user7-128x128.jpg" alt="User Image">
+                                                        <img class="img-circle img-bordered-sm" src="<?php echo PATH_SYS; ?>dist/img/user7-128x128.jpg" alt="User Image">
                                                         <span class="username">
                                                             <a href="#">Sarah Ross</a>
                                                             <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
@@ -216,7 +216,7 @@ $check = new CheckValidUser();
                                                 <!-- Post -->
                                                 <div class="post">
                                                     <div class="user-block">
-                                                        <img class="img-circle img-bordered-sm" src="<?php echo $serv; ?>dist/img/user6-128x128.jpg" alt="User Image">
+                                                        <img class="img-circle img-bordered-sm" src="<?php echo PATH_SYS; ?>dist/img/user6-128x128.jpg" alt="User Image">
                                                         <span class="username">
                                                             <a href="#">Adam Jones</a>
                                                             <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
@@ -226,19 +226,19 @@ $check = new CheckValidUser();
                                                     <!-- /.user-block -->
                                                     <div class="row mb-3">
                                                         <div class="col-sm-6">
-                                                            <img class="img-fluid" src="<?php echo $serv; ?>dist/img/photo1.png" alt="Photo">
+                                                            <img class="img-fluid" src="<?php echo PATH_SYS; ?>dist/img/photo1.png" alt="Photo">
                                                         </div>
                                                         <!-- /.col -->
                                                         <div class="col-sm-6">
                                                             <div class="row">
                                                                 <div class="col-sm-6">
-                                                                    <img class="img-fluid mb-3" src="<?php echo $serv; ?>dist/img/photo2.png" alt="Photo">
-                                                                    <img class="img-fluid" src="<?php echo $serv; ?>dist/img/photo3.jpg" alt="Photo">
+                                                                    <img class="img-fluid mb-3" src="<?php echo PATH_SYS; ?>dist/img/photo2.png" alt="Photo">
+                                                                    <img class="img-fluid" src="<?php echo PATH_SYS; ?>dist/img/photo3.jpg" alt="Photo">
                                                                 </div>
                                                                 <!-- /.col -->
                                                                 <div class="col-sm-6">
-                                                                    <img class="img-fluid mb-3" src="<?php echo $serv; ?>dist/img/photo4.jpg" alt="Photo">
-                                                                    <img class="img-fluid" src="<?php echo $serv; ?>dist/img/photo1.png" alt="Photo">
+                                                                    <img class="img-fluid mb-3" src="<?php echo PATH_SYS; ?>dist/img/photo4.jpg" alt="Photo">
+                                                                    <img class="img-fluid" src="<?php echo PATH_SYS; ?>dist/img/photo1.png" alt="Photo">
                                                                 </div>
                                                                 <!-- /.col -->
                                                             </div>

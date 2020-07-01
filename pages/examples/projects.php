@@ -10,8 +10,8 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="<?php echo $serv; ?>index3.php" class="brand-link">
-                <img src="<?php echo $serv; ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+            <a href="<?php echo PATH_SYS; ?>index3.php" class="brand-link">
+                <img src="<?php echo PATH_SYS; ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">AdminLTE 3</span>
             </a>
 
@@ -20,7 +20,7 @@
                 <!-- Sidebar user (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="<?php echo $serv; ?>dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                        <img src="<?php echo PATH_SYS; ?>dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block">Alexander Pierce</a>
@@ -108,16 +108,16 @@
                                     <td>
                                         <ul class="list-inline">
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar.png">
                                             </li>
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar2.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar2.png">
                                             </li>
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar3.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar3.png">
                                             </li>
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar4.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar4.png">
                                             </li>
                                         </ul>
                                     </td>
@@ -167,10 +167,10 @@
                                     <td>
                                         <ul class="list-inline">
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar.png">
                                             </li>
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar2.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar2.png">
                                             </li>
                                         </ul>
                                     </td>
@@ -220,13 +220,13 @@
                                     <td>
                                         <ul class="list-inline">
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar.png">
                                             </li>
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar2.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar2.png">
                                             </li>
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar3.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar3.png">
                                             </li>
                                         </ul>
                                     </td>
@@ -276,16 +276,16 @@
                                     <td>
                                         <ul class="list-inline">
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar.png">
                                             </li>
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar2.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar2.png">
                                             </li>
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar3.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar3.png">
                                             </li>
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar4.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar4.png">
                                             </li>
                                         </ul>
                                     </td>
@@ -335,13 +335,13 @@
                                     <td>
                                         <ul class="list-inline">
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar.png">
                                             </li>
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar4.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar4.png">
                                             </li>
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar5.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar5.png">
                                             </li>
                                         </ul>
                                     </td>
@@ -391,16 +391,16 @@
                                     <td>
                                         <ul class="list-inline">
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar.png">
                                             </li>
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar2.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar2.png">
                                             </li>
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar3.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar3.png">
                                             </li>
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar4.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar4.png">
                                             </li>
                                         </ul>
                                     </td>
@@ -450,10 +450,10 @@
                                     <td>
                                         <ul class="list-inline">
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar4.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar4.png">
                                             </li>
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar5.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar5.png">
                                             </li>
                                         </ul>
                                     </td>
@@ -503,13 +503,13 @@
                                     <td>
                                         <ul class="list-inline">
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar.png">
                                             </li>
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar3.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar3.png">
                                             </li>
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar4.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar4.png">
                                             </li>
                                         </ul>
                                     </td>
@@ -559,16 +559,16 @@
                                     <td>
                                         <ul class="list-inline">
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar.png">
                                             </li>
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar3.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar3.png">
                                             </li>
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar4.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar4.png">
                                             </li>
                                             <li class="list-inline-item">
-                                                <img alt="Avatar" class="table-avatar" src="<?php echo $serv; ?>dist/img/avatar5.png">
+                                                <img alt="Avatar" class="table-avatar" src="<?php echo PATH_SYS; ?>dist/img/avatar5.png">
                                             </li>
                                         </ul>
                                     </td>
@@ -630,12 +630,12 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="<?php echo $serv; ?>plugins/jquery/jquery.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="<?php echo $serv; ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="<?php echo $serv; ?>dist/js/adminlte.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="<?php echo $serv; ?>dist/js/demo.js"></script>
+    <script src="<?php echo PATH_SYS; ?>dist/js/demo.js"></script>
 </body>
 </html>

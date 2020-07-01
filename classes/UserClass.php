@@ -21,11 +21,13 @@ class UserClass {
     public function __construct() {
 
         $this->baseurl = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']);
-        define("COOKIE_EXPIRE", 60 * 60 * 24 * 7);  //7 days by default
-        define("COOKIE_PATH", "/");  //Avaible in whole domain
+
         /* If login data is posted call validation function. */
         if (isset($_POST["signin"])) {
             $this->Login();
+        }
+        if (isset($_POST['profile'])) {
+            $this->Profile();
         }
         if (isset($_POST["logout"])) {
             $this->Logout();
@@ -94,6 +96,11 @@ class UserClass {
                     $useremail = trim($_POST['email']);
                     $userpsw = trim($_POST['password']);
                     $userpin = trim($_POST['PIN']);
+                    $remember = trim($_POST['remember']);
+                    if ($remember === 'Yes') {
+                        define("COOKIE_EXPIRE", 60 * 60 * 24 * 7);  //7 days by default
+                        define("COOKIE_PATH", "/");  //Avaible in whole domain
+                    }
 
                     $stmt = $conn->prepare("SELECT * FROM uverify WHERE email = ? AND mkpin = ?");
                     $stmt->bind_param("ss", $useremail, $userpin);
@@ -202,7 +209,13 @@ class UserClass {
      * Logs user out, destroys all session data.
      */
 
-    public function logOut() {
+    public function Profile() {
+        if (isset($_POST['profile'])) {
+            header('Location: ' . PATH_SYS . '/users/profile.php');
+        }
+    }
+
+    public function logout() {
         if (isset($_POST['logout'])) {
             if (!empty($_SESSION['user_id'])) {
                 if (isset($_COOKIE['cookname']) && isset($_COOKIE['cookid'])) {
@@ -217,6 +230,8 @@ class UserClass {
                 session_destroy(); // Destroy all session data.
                 header('Location: login.php');
             }
+        } else {
+            header('Location: index.php');
         }
     }
 

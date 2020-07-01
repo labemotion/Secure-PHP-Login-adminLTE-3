@@ -33,7 +33,7 @@ $login = new UserClass();
         </div>
         <div class="login-box">
             <div class="login-logo">
-                <a href="<?php echo $serv; ?>index.php"><b><?php echo SITE_NAME; ?></b></a>
+                <a href="<?php echo PATH_SYS; ?>index.php"><b><?php echo SITE_NAME; ?></b></a>
             </div>
             <!-- /.login-logo -->
             <div class="card">
@@ -71,7 +71,7 @@ $login = new UserClass();
                         <div class="row">
                             <div class="col-8">
                                 <div class="icheck-primary">
-                                    <input type="checkbox" id="remember" name="remember">
+                                    <input type="checkbox" id="remember" name="remember" value=”Yes”>
                                     <label for="remember">
                                         Remember Me
                                     </label>

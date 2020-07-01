@@ -4,7 +4,7 @@
     <!-- Automatic element centering -->
     <div class="lockscreen-wrapper">
         <div class="lockscreen-logo">
-            <a href="<?php echo $serv; ?>index2.php"><b>Admin</b>LTE</a>
+            <a href="<?php echo PATH_SYS; ?>index2.php"><b>Admin</b>LTE</a>
         </div>
         <!-- User name -->
         <div class="lockscreen-name">John Doe</div>
@@ -13,7 +13,7 @@
         <div class="lockscreen-item">
             <!-- lockscreen image -->
             <div class="lockscreen-image">
-                <img src="<?php echo $serv; ?>dist/img/user1-128x128.jpg" alt="User Image">
+                <img src="<?php echo PATH_SYS; ?>dist/img/user1-128x128.jpg" alt="User Image">
             </div>
             <!-- /.lockscreen-image -->
 
@@ -45,8 +45,8 @@
     <!-- /.center -->
 
     <!-- jQuery -->
-    <script src="<?php echo $serv; ?>plugins/jquery/jquery.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="<?php echo $serv; ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

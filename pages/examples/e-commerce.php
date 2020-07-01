@@ -10,8 +10,8 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="<?php echo $serv; ?>index3.php" class="brand-link">
-                <img src="<?php echo $serv; ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+            <a href="<?php echo PATH_SYS; ?>index3.php" class="brand-link">
+                <img src="<?php echo PATH_SYS; ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">AdminLTE 3</span>
             </a>
 
@@ -20,7 +20,7 @@
                 <!-- Sidebar user (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="<?php echo $serv; ?>dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                        <img src="<?php echo PATH_SYS; ?>dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block">Alexander Pierce</a>
@@ -63,14 +63,14 @@
                             <div class="col-12 col-sm-6">
                                 <h3 class="d-inline-block d-sm-none">LOWA Men’s Renegade GTX Mid Hiking Boots Review</h3>
                                 <div class="col-12">
-                                    <img src="<?php echo $serv; ?>dist/img/prod-1.jpg" class="product-image" alt="Product Image">
+                                    <img src="<?php echo PATH_SYS; ?>dist/img/prod-1.jpg" class="product-image" alt="Product Image">
                                 </div>
                                 <div class="col-12 product-image-thumbs">
-                                    <div class="product-image-thumb active"><img src="<?php echo $serv; ?>dist/img/prod-1.jpg" alt="Product Image"></div>
-                                    <div class="product-image-thumb" ><img src="<?php echo $serv; ?>dist/img/prod-2.jpg" alt="Product Image"></div>
-                                    <div class="product-image-thumb" ><img src="<?php echo $serv; ?>dist/img/prod-3.jpg" alt="Product Image"></div>
-                                    <div class="product-image-thumb" ><img src="<?php echo $serv; ?>dist/img/prod-4.jpg" alt="Product Image"></div>
-                                    <div class="product-image-thumb" ><img src="<?php echo $serv; ?>dist/img/prod-5.jpg" alt="Product Image"></div>
+                                    <div class="product-image-thumb active"><img src="<?php echo PATH_SYS; ?>dist/img/prod-1.jpg" alt="Product Image"></div>
+                                    <div class="product-image-thumb" ><img src="<?php echo PATH_SYS; ?>dist/img/prod-2.jpg" alt="Product Image"></div>
+                                    <div class="product-image-thumb" ><img src="<?php echo PATH_SYS; ?>dist/img/prod-3.jpg" alt="Product Image"></div>
+                                    <div class="product-image-thumb" ><img src="<?php echo PATH_SYS; ?>dist/img/prod-4.jpg" alt="Product Image"></div>
+                                    <div class="product-image-thumb" ><img src="<?php echo PATH_SYS; ?>dist/img/prod-5.jpg" alt="Product Image"></div>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6">
@@ -218,12 +218,12 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="<?php echo $serv; ?>plugins/jquery/jquery.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="<?php echo $serv; ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="<?php echo $serv; ?>dist/js/adminlte.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="<?php echo $serv; ?>dist/js/demo.js"></script>
+    <script src="<?php echo PATH_SYS; ?>dist/js/demo.js"></script>
 </body>
 </html>

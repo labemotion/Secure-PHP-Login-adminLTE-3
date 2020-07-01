@@ -20,8 +20,8 @@ $check = new CheckValidUser();
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="<?php echo $serv; ?>index3.php" class="brand-link">
-                <img src="<?php echo $serv; ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+            <a href="<?php echo PATH_SYS; ?>index3.php" class="brand-link">
+                <img src="<?php echo PATH_SYS; ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">AdminLTE 3</span>
             </a>
 
@@ -81,7 +81,7 @@ $check = new CheckValidUser();
                                                 </ul>
                                             </div>
                                             <div class="col-5 text-center">
-                                                <img src="<?php echo $serv; ?>dist/img/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid">
+                                                <img src="<?php echo PATH_SYS; ?>dist/img/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid">
                                             </div>
                                         </div>
                                     </div>
@@ -113,7 +113,7 @@ $check = new CheckValidUser();
                                                 </ul>
                                             </div>
                                             <div class="col-5 text-center">
-                                                <img src="<?php echo $serv; ?>dist/img/user2-160x160.jpg" alt="user-avatar" class="img-circle img-fluid">
+                                                <img src="<?php echo PATH_SYS; ?>dist/img/user2-160x160.jpg" alt="user-avatar" class="img-circle img-fluid">
                                             </div>
                                         </div>
                                     </div>
@@ -145,7 +145,7 @@ $check = new CheckValidUser();
                                                 </ul>
                                             </div>
                                             <div class="col-5 text-center">
-                                                <img src="<?php echo $serv; ?>dist/img/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid">
+                                                <img src="<?php echo PATH_SYS; ?>dist/img/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid">
                                             </div>
                                         </div>
                                     </div>
@@ -177,7 +177,7 @@ $check = new CheckValidUser();
                                                 </ul>
                                             </div>
                                             <div class="col-5 text-center">
-                                                <img src="<?php echo $serv; ?>dist/img/user2-160x160.jpg" alt="user-avatar" class="img-circle img-fluid">
+                                                <img src="<?php echo PATH_SYS; ?>dist/img/user2-160x160.jpg" alt="user-avatar" class="img-circle img-fluid">
                                             </div>
                                         </div>
                                     </div>
@@ -208,7 +208,7 @@ $check = new CheckValidUser();
                                                 </ul>
                                             </div>
                                             <div class="col-5 text-center">
-                                                <img src="<?php echo $serv; ?>dist/img/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid">
+                                                <img src="<?php echo PATH_SYS; ?>dist/img/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid">
                                             </div>
                                         </div>
                                     </div>
@@ -240,7 +240,7 @@ $check = new CheckValidUser();
                                                 </ul>
                                             </div>
                                             <div class="col-5 text-center">
-                                                <img src="<?php echo $serv; ?>dist/img/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid">
+                                                <img src="<?php echo PATH_SYS; ?>dist/img/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid">
                                             </div>
                                         </div>
                                     </div>
@@ -271,39 +271,7 @@ $check = new CheckValidUser();
                                                 </ul>
                                             </div>
                                             <div class="col-5 text-center">
-                                                <img src="<?php echo $serv; ?>dist/img/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="text-right">
-                                            <a href="#" class="btn btn-sm bg-teal">
-                                                <i class="fas fa-comments"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-sm btn-primary">
-                                                <i class="fas fa-user"></i> View Profile
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-                                <div class="card bg-light">
-                                    <div class="card-header text-muted border-bottom-0">
-                                        Digital Strategist
-                                    </div>
-                                    <div class="card-body pt-0">
-                                        <div class="row">
-                                            <div class="col-7">
-                                                <h2 class="lead"><b>Nicole Pearson</b></h2>
-                                                <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee Lover </p>
-                                                <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City 04312, NJ</li>
-                                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23 52</li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-5 text-center">
-                                                <img src="<?php echo $serv; ?>dist/img/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid">
+                                                <img src="<?php echo PATH_SYS; ?>dist/img/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid">
                                             </div>
                                         </div>
                                     </div>
@@ -335,7 +303,39 @@ $check = new CheckValidUser();
                                                 </ul>
                                             </div>
                                             <div class="col-5 text-center">
-                                                <img src="<?php echo $serv; ?>dist/img/user2-160x160.jpg" alt="user-avatar" class="img-circle img-fluid">
+                                                <img src="<?php echo PATH_SYS; ?>dist/img/user1-128x128.jpg" alt="user-avatar" class="img-circle img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="text-right">
+                                            <a href="#" class="btn btn-sm bg-teal">
+                                                <i class="fas fa-comments"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-sm btn-primary">
+                                                <i class="fas fa-user"></i> View Profile
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+                                <div class="card bg-light">
+                                    <div class="card-header text-muted border-bottom-0">
+                                        Digital Strategist
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <h2 class="lead"><b>Nicole Pearson</b></h2>
+                                                <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee Lover </p>
+                                                <ul class="ml-4 mb-0 fa-ul text-muted">
+                                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City 04312, NJ</li>
+                                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23 52</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-5 text-center">
+                                                <img src="<?php echo PATH_SYS; ?>dist/img/user2-160x160.jpg" alt="user-avatar" class="img-circle img-fluid">
                                             </div>
                                         </div>
                                     </div>
@@ -393,12 +393,12 @@ $check = new CheckValidUser();
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="<?php echo $serv; ?>plugins/jquery/jquery.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="<?php echo $serv; ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="<?php echo $serv; ?>dist/js/adminlte.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="<?php echo $serv; ?>dist/js/demo.js"></script>
+    <script src="<?php echo PATH_SYS; ?>dist/js/demo.js"></script>
 </body>
 </html>

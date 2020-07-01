@@ -34,7 +34,6 @@ $level = new AccessLevel();
                     <?php
                     include 'elements/userinfo.php';
                     ?>
-
                     <!-- Sidebar Menu -->
                     <?php
                     include 'elements/sidebar.php';

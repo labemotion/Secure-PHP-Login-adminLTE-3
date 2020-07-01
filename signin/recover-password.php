@@ -4,14 +4,16 @@ if (!isset($_SESSION)) {
 }
 require '../config/constants.php';
 require 'autoload.php';
+$definitions = new SiteDefinitions();
 $login = new UserClass();
+$forgotpass = new userForgot();
 ?>
-<?php include '../../elements/header.php'; ?>
+<?php include '../elements/header.php'; ?>
 </head>
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="<?php echo $serv; ?>index2.php"><b>Admin</b>LTE</a>
+            <a href="<?php echo PATH_SYS; ?>index2.php"><b><?php echo SITE_NAME; ?></b></a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
@@ -51,6 +53,6 @@ $login = new UserClass();
         </div>
     </div>
     <!-- /.login-box -->
-   <?php include '../../elements/footer.php'; ?>
+    <?php include '../../elements/footer.php'; ?>
 </body>
 </html>

@@ -1,11 +1,11 @@
 <!-- jQuery -->
-<script src="<?php echo $serv; ?>plugins/jquery/jquery.min.js"></script>
+<script src="<?php echo PATH_SYS; ?>plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="<?php echo $serv; ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?php echo PATH_SYS; ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
-<script src="<?php echo $serv; ?>dist/js/adminlte.min.js"></script>
+<script src="<?php echo PATH_SYS; ?>dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="<?php echo $serv; ?>dist/js/demo.js"></script>
+<script src="<?php echo PATH_SYS; ?>dist/js/demo.js"></script>
 <script>
     $(function () {
         $("a").find('.active').each(function () {
@@ -21,9 +21,9 @@
 </script>
 <?php if ($fname === 'slider') { ?>
     <!-- Ion Slider -->
-    <script src="<?php echo $serv; ?>plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
     <!-- Bootstrap slider -->
-    <script src="<?php echo $serv; ?>plugins/bootstrap-slider/bootstrap-slider.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/bootstrap-slider/bootstrap-slider.min.js"></script>
     <script>
     $(function () {
         /* BOOTSTRAP SLIDER */
@@ -93,9 +93,9 @@
 <?php } if ($fname === 'ribbons') { ?>
 
     <!-- Ion Slider -->
-    <script src="<?php echo $serv; ?>plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
     <!-- Bootstrap slider -->
-    <script src="<?php echo $serv; ?>plugins/bootstrap-slider/bootstrap-slider.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/bootstrap-slider/bootstrap-slider.min.js"></script>
     <script>
     $(function () {
         /* BOOTSTRAP SLIDER */
@@ -164,9 +164,9 @@
     </script>
 <?php } if ($fname === 'moddals') { ?>
     <!-- SweetAlert2 -->
-    <script src="<?php echo $serv; ?>plugins/sweetalert2/sweetalert2.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/sweetalert2/sweetalert2.min.js"></script>
     <!-- Toastr -->
-    <script src="<?php echo $serv; ?>plugins/toastr/toastr.min.js"></script>   
+    <script src="<?php echo PATH_SYS; ?>plugins/toastr/toastr.min.js"></script>   
     <script>
     $(function () {
         var Toast = Swal.mixin({
@@ -325,9 +325,9 @@
 
 <?php } if ($fname === 'inline') { ?>
     <!-- jQuery Knob -->
-    <script src="<?php echo $serv; ?>plugins/jquery-knob/jquery.knob.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/jquery-knob/jquery.knob.min.js"></script>
     <!-- Sparkline -->
-    <script src="<?php echo $serv; ?>plugins/sparkline/jquery.sparkline.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/sparkline/jquery.sparkline.min.js"></script>
     <!-- page script -->
     <script>
     $(function () {
@@ -611,13 +611,13 @@
     </script>
 <?php } if ($fname === 'flot') { ?>
     <!-- jQuery UI -->
-    <script src="<?php echo $serv; ?>plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- FLOT CHARTS -->
-    <script src="<?php echo $serv; ?>plugins/flot/jquery.flot.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/flot/jquery.flot.js"></script>
     <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
-    <script src="<?php echo $serv; ?>plugins/flot-old/jquery.flot.resize.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/flot-old/jquery.flot.resize.min.js"></script>
     <!-- FLOT PIE PLUGIN - also used to draw donut charts -->
-    <script src="<?php echo $serv; ?>plugins/flot-old/jquery.flot.pie.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/flot-old/jquery.flot.pie.min.js"></script>
     <!-- Page script -->
     <script>
     $(function () {
@@ -908,7 +908,7 @@
     </script>
 <?php } if ($fname === 'chartjs') { ?>
     <!-- ChartJS -->
-    <script src="<?php echo $serv; ?>plugins/chart.js/Chart.min.js"></script>        
+    <script src="<?php echo PATH_SYS; ?>plugins/chart.js/Chart.min.js"></script>        
     <!-- page script -->
     <script>
     $(function () {
@@ -1096,8 +1096,8 @@
     </script>
 <?php } if ($fname === 'jsgrid') { ?>
     <!-- jsGrid -->
-    <script src="<?php echo $serv; ?>plugins/jsgrid/demos/db.js"></script>
-    <script src="<?php echo $serv; ?>plugins/jsgrid/jsgrid.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/jsgrid/demos/db.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/jsgrid/jsgrid.min.js"></script>
     <!-- page script -->
     <script>
     $(function () {
@@ -1122,10 +1122,10 @@
     </script>
 <?php } if ($fname === 'data') { ?>
     <!-- DataTables -->
-    <script src="<?php echo $serv; ?>plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="<?php echo $serv; ?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="<?php echo $serv; ?>plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="<?php echo $serv; ?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 
     <!-- page script -->
     <script>
@@ -1181,20 +1181,20 @@
     </script>
 <?php } if ($fname === 'advanced') { ?>
     <!-- Select2 -->
-    <script src="<?php echo $serv; ?>plugins/select2/js/select2.full.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/select2/js/select2.full.min.js"></script>
     <!-- Bootstrap4 Duallistbox -->
-    <script src="<?php echo $serv; ?>plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
     <!-- InputMask -->
-    <script src="<?php echo $serv; ?>plugins/moment/moment.min.js"></script>
-    <script src="<?php echo $serv; ?>plugins/inputmask/jquery.inputmask.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/moment/moment.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/inputmask/jquery.inputmask.min.js"></script>
     <!-- date-range-picker -->
-    <script src="<?php echo $serv; ?>plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/daterangepicker/daterangepicker.js"></script>
     <!-- bootstrap color picker -->
-    <script src="<?php echo $serv; ?>plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
     <!-- Tempusdominus Bootstrap 4 -->
-    <script src="<?php echo $serv; ?>plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <!-- Bootstrap Switch -->
-    <script src="<?php echo $serv; ?>plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 
     <!-- Page script -->
     <script>
@@ -1272,7 +1272,7 @@
     </script>
 <?php } if ($fname === 'editors') { ?>
     <!-- Summernote -->
-    <script src="<?php echo $serv; ?>plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/summernote/summernote-bs4.min.js"></script>
     <script>
         $(function () {
             // Summernote
@@ -1281,7 +1281,7 @@
     </script>
 <?php } if ($fname === 'general') { ?>
     <!-- bs-custom-file-input -->
-    <script src="<?php echo $serv; ?>plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>       
+    <script src="<?php echo PATH_SYS; ?>plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>       
     <script>
         $(function () {
             bsCustomFileInput.init();
@@ -1290,8 +1290,8 @@
 <?php } if ($fname === 'validation') { ?>
 
     <!-- jquery-validation -->
-    <script src="<?php echo $serv; ?>plugins/jquery-validation/jquery.validate.min.js"></script>
-    <script src="<?php echo $serv; ?>plugins/jquery-validation/additional-methods.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/jquery-validation/additional-methods.min.js"></script>
     <script>
         $(function () {
             $.validator.setDefaults({
@@ -1340,10 +1340,10 @@
     </script>
 <?php } if ($fname === 'fixed-sidebar') { ?>
     <!-- overlayScrollbars -->
-    <script src="<?php echo $serv; ?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <?php } if ($fname === 'compose') { ?>
     <!-- Summernote -->
-    <script src="<?php echo $serv; ?>plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="<?php echo PATH_SYS; ?>plugins/summernote/summernote-bs4.min.js"></script>
     <!-- Page Script -->
     <script>
         $(function () {
