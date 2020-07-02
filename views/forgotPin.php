@@ -1,43 +1,37 @@
-<div class="container">
-    <!-- Forgot password form -->
-    <div class="forgotpassword-Form">
-        <form action="forgot-pin.php" name="forgotpassword-Form"
-              class="form-forgot" method="post">
-            <h3 class="cnt">¿Olvidaste tu PIN?</h3>
-            <hr class="colorgraph">
-
-            <p class="">Introduce tu correo electrónico. Le enviaremos
-                instrucciones por correo electrónico sobre cómo restablecer su
-                PIN.</p>
-
-            <label for="email">E-mail<span class="red">*</span>:
-            </label> <input type="email" name="email" id="email"
-                            placeholder="E-mail" class="input form-control" autocomplete="off"
-                            required autofocus><br>
-
-            <!-- If there is an error it will be shown. --> 
-            <?php if (!empty($_SESSION['ErrorMessage'])): ?>
-                <div class="alert alert-danger alert-container"
-                     id="alert">
-                    <strong><?php echo htmlentities($_SESSION['ErrorMessage']) ?></strong>
-                    <?php unset($_SESSION['ErrorMessage']); ?>
-                </div>
-            <?php endif; ?>
-            <!-- If e-mail has been sent. -->
-            <?php if (!empty($_SESSION['SuccessMessage'])): ?>
-                <div class="alert alert-success alert-container"
-                     id="alert">
-                    <strong><?php echo htmlentities($_SESSION['SuccessMessage']) ?></strong>
-                    <?php unset($_SESSION['SuccessMessage']); ?>
-                </div>
-            <?php endif; ?>
-
-            <input type="submit" name="forgotPIN"
-                   value="Enviar e-mail" class="btn btn-lg btn-block submit" />
-
-        </form>
-
+<div class="login-box">
+    <div class="login-logo">
+        <a href="<?php echo PATH_SYS; ?>index2.php"><b><?php echo SITE_NAME; ?></b></a>
     </div>
-    <!-- End Forgot password Form-->
+    <!-- /.login-logo -->
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg">You forgot your PIN? Here you can easily retrieve a new PIN.</p>
 
+            <form action="forgot-pin.php" method="post">
+                <div class="input-group mb-3">
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <button type="submit" name="forgotPIN" id="forgotPIN" class="btn btn-primary btn-block">Request new PIN</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+
+            <p class="mt-3 mb-1">
+                <a href="<?php echo PATH_SYS; ?>signin/login.php">Login</a>
+            </p>
+            <p class="mb-0">
+                <a href="<?php echo PATH_SYS; ?>signin/register.php" class="text-center">Register a new membership</a>
+            </p>
+        </div>
+        <!-- /.login-card-body -->
+    </div>
 </div>
+<!-- /.login-box -->

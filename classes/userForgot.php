@@ -48,14 +48,14 @@ class userForgot {
 
 // Require credentials for DB connection.
 // Check if username or email is already taken.
-            $stmt = $conn->prepare("SELECT email, mkhash FROM uverify WHERE email = ?");
+            $stmt = $conn->prepare("SELECT username, email, mkhash FROM uverify WHERE email = ?");
             $stmt->bind_param("s", $email);
             $stmt->execute();
             $result = $stmt->get_result();
             $urw = $result->fetch_assoc();
             $stmt->close();
             $hash = $urw['mkhash'];
-
+            $uname = $urw['username'];
 // If e-mail exists a key for password reset is created into database, after this an e-mail will be sent to user with link and the token key.
             if ($result->num_rows === 1) {
 
@@ -72,26 +72,28 @@ class userForgot {
 
                 $startT = date("Y-m-d H:i:s");
                 $expireT = date('Y-m-d H:i:s', strtotime('+2 hour', strtotime($startT)));
-                $stmt1 = $conn->prepare("INSERT INTO forgot_pass (email,password_key,expire) VALUES (?,?,?)");
-                $stmt1->bind_param("ssss", $email, $forgot_password_key, $expireT);
+                $stmt1 = $conn->prepare("INSERT INTO forgot_pass (username, email, password_key, expire) VALUES (?,?,?,?)");
+                $stmt1->bind_param("sss", $uname, $email, $forgot_password_key, $expireT);
                 $stmt1->execute();
                 $stmt1->close();
-
-                $_SESSION['SuccessMessage'] = '¡El correo electrónico contiene los pasos a seguir para el reinicio de su contraseña!';
-
+               
                 $to = $email;
                 $subject = "Restablecer la contraseña";
                 $from = 'contact@labemotion.net'; // Insert the e-mail from where you want to send the emails.
                 $body = "Su clave de reinicio es: " . $forgot_password_key . "\n";
-                $body .= '<a href="' . $this->baseurl . '/password_reset.php?email=' . $email . '&key=' . $forgot_password_key . '&hash=' . $hash . '">Haga click para restaurar su contraseña.</a>'; // Replace YOURWEBSITEURL with your own URL for the link to work.
+                $body .= '<a href="' . $this->baseurl . '/signin/password_reset.php?email=' . $email . '&key=' . $forgot_password_key . '&hash=' . $hash . '">Haga click para restaurar su contraseña.</a>'; // Replace YOURWEBSITEURL with your own URL for the link to work.
                 $headers = "From: " . $from . "\r\n";
                 $headers .= "Reply-To: " . $from . "\r\n";
                 $headers .= "MIME-Version: 1.0\r\n";
                 $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-                mail($to, $subject, $body, $headers);
-
+                $success = mail($to, $subject, $body, $headers);
+                if ($success === true) {
+                    $_SESSION['SuccessMessage'] = 'E-mail ha sido enviado.' . '\n' .
+                            '¡El correo electrónico contiene los pasos a seguir para el reinicio de su contraseña!';
+                } else {
+                    $_SESSION['ErrorMessage'] = '¡Error al enviar un mensaje a su correo electrónico';
+                }
 // Always give this message to prevent data colleting even if the e-mail doesn't exist(The password reset e-mail is only sent if the e-mail exists in database).
-                $_SESSION['SuccessMessage'] = 'E-mail ha sido enviado.';
             } else {
                 $_SESSION['ErrorMessage'] = 'E-mail no existe o es incorrecto.';
             }
@@ -109,7 +111,7 @@ class userForgot {
             $email = trim($_POST['email']);
 
 // Check if username or email is already taken.
-            $stmt = $conn->prepare("SELECT email, mkhash FROM uverify WHERE email = ?");
+            $stmt = $conn->prepare("SELECT username, email, mkhash FROM uverify WHERE email = ?");
             $stmt->bind_param("s", $email);
             $stmt->execute();
             $inst = $stmt->affected_rows;
@@ -118,6 +120,7 @@ class userForgot {
             /* bind result variables */
             $stmt->close();
             $mkhash = $urw['mkhash'];
+            $uname = $urw['username'];
 // If e-mail exists a key for password reset is created into database, after this an e-mail will be sent to user with link and the token key.
             if ($inst === 1) {
 
@@ -134,8 +137,8 @@ class userForgot {
 
                 $startT = date("Y-m-d H:i:s");
                 $expireT = date('Y-m-d H:i:s', strtotime('+2 hour', strtotime($startT)));
-                $stmt1 = $conn->prepare("INSERT INTO forgot_pin (email,pin_key,expire) VALUES (?,?,?)");
-                $stmt1->bind_param("ssss", $email, $forgot_pin_key, $expireT);
+                $stmt1 = $conn->prepare("INSERT INTO forgot_pin (username,email,pin_key,expire) VALUES (?,?,?,?)");
+                $stmt1->bind_param("ssss", $uname, $email, $forgot_pin_key, $expireT);
                 $stmt1->execute();
                 $stmt1->close();
 
@@ -143,7 +146,7 @@ class userForgot {
                 $subject = "Restablecer el PIN";
                 $from = 'contact@labemotion.net'; // Insert the e-mail from where you want to send the emails.
                 $body = "Su clave de reinicio es: " . $forgot_pin_key . "\n";
-                $body .= '<a href="' . $this->baseurl . '/pin_reset.php?email=' . $email . '&key=' . $forgot_pin_key . '&hash=' . $mkhash . '">Haga click aqui para resetear su PIN</a>'; // Replace YOURWEBSITEURL with your own URL for the link to work.
+                $body .= '<a href="' . $this->baseurl . '/signin/pin_reset.php?email=' . $email . '&key=' . $forgot_pin_key . '&hash=' . $mkhash . '">Haga click aqui para resetear su PIN</a>'; // Replace YOURWEBSITEURL with your own URL for the link to work.
                 $headers = "From: " . $from . "\r\n";
                 $headers .= "Reply-To: " . $from . "\r\n";
                 $headers .= "MIME-Version: 1.0\r\n";
