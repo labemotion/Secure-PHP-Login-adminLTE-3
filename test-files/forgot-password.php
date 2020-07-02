@@ -3,7 +3,7 @@ if (!isset($_SESSION)) {
     session_start();
 }
 require 'config/constants.php';
-require 'autoload.php';
+require 'Autoload.php';
 $level = new AccessLevel();
 $login = new UserClass();
 $forgotpass = new userForgot();

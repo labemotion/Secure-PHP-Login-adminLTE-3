@@ -3,12 +3,28 @@ if (!isset($_SESSION)) {
     session_start();
 }
 require '../config/constants.php';
-require 'autoload.php';
+require 'Autoload.php';
 $login = new UserClass();
 ?>
 <?php include '../elements/header.php'; ?>
 </head>
 <body class="hold-transition login-page">
+    <div class="container">
+        <div class="row">
+            <?php if (!empty($_SESSION['ErrorMessage'])) { ?>
+                <div class="alert alert-danger alert-container" id="alert">
+                    <strong><center><?php echo htmlentities($_SESSION['ErrorMessage']) ?></center></strong>
+                    <?php unset($_SESSION['ErrorMessage']); ?>
+                </div>
+            <?php } ?>
+            <?php if (!empty($_SESSION['SuccessMessage'])) { ?>
+                <div class="alert alert-success alert-container" id="alert">
+                    <strong><center><?php echo htmlentities($_SESSION['SuccessMessage']) ?></center></strong>
+                    <?php unset($_SESSION['SuccessMessage']); ?>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
     <div class="login-box">
         <div class="login-logo">
             <a href="<?php echo PATH_SYS; ?>index2.php"><?php echo SITE_NAME; ?></a>
@@ -64,10 +80,10 @@ $login = new UserClass();
                 <!-- /.social-auth-links -->
 
                 <p class="mb-1">
-                    <a href="forgot-password.php">I forgot my password</a>
+                    <a href="<?php echo PATH_SYS; ?>signin/forgot-password.php">I forgot my password</a>
                 </p>
                 <p class="mb-0">
-                    <a href="register.php" class="text-center">Register a new membership</a>
+                    <a href="<?php echo PATH_SYS; ?>signin/register.php" class="text-center">Register a new membership</a>
                 </p>
             </div>
             <!-- /.login-card-body -->

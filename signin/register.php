@@ -3,7 +3,7 @@ if (!isset($_SESSION)) {
     session_start();
 }
 require '../config/constants.php';
-require 'autoload.php';
+require 'Autoload.php';
 $definitions = new SiteDefinitions();
 $login = new UserClass();
 $level = new AccessLevel();
@@ -12,6 +12,22 @@ $newuser = new newUser();
 <?php include '../elements/header.php'; ?>
 </head>
 <body class="hold-transition register-page">
+    <div class="container">
+        <div class="row">
+            <?php if (!empty($_SESSION['ErrorMessage'])) { ?>
+                <div class="alert alert-danger alert-container" id="alert">
+                    <strong><center><?php echo htmlentities($_SESSION['ErrorMessage']) ?></center></strong>
+                    <?php unset($_SESSION['ErrorMessage']); ?>
+                </div>
+            <?php } ?>
+            <?php if (!empty($_SESSION['SuccessMessage'])) { ?>
+                <div class="alert alert-success alert-container" id="alert">
+                    <strong><center><?php echo htmlentities($_SESSION['SuccessMessage']) ?></center></strong>
+                    <?php unset($_SESSION['SuccessMessage']); ?>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
     <div class="register-box">
         <div class="register-logo">
             <a href="<?php echo PATH_SYS; ?>index2.php"><b><?php echo SITE_NAME; ?></b></a>

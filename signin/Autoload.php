@@ -3,6 +3,7 @@
 class Autoload {
 
     static public function loader($classes) {
+
         $filename = "../classes/" . str_replace("\\", '/', $classes) . ".php";
         if (file_exists($filename)) {
             include($filename);
@@ -17,5 +18,5 @@ class Autoload {
 
 }
 
-spl_autoload_register('Autoload::loader');
-
+spl_Autoload_register('Autoload::loader');
+?>

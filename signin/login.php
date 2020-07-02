@@ -3,7 +3,7 @@ if (!isset($_SESSION)) {
     session_start();
 }
 require '../config/constants.php';
-require 'autoload.php';
+require 'Autoload.php';
 $definitions = new SiteDefinitions();
 $login = new UserClass();
 ?>
@@ -86,13 +86,13 @@ $login = new UserClass();
                     </form>
 
                     <p class="mb-1">
-                        <a href="forgot-password.php">I forgot my password</a>
+                        <a href="<?php echo PATH_SYS; ?>signin/forgot-password.php">I forgot my password</a>
                     </p>
                     <p class="mb-1">
-                        <a href="forgot-password.php">I forgot my PIN</a>
+                        <a href="<?php echo PATH_SYS; ?>signin/forgot-password.php">I forgot my PIN</a>
                     </p>
                     <p class="mb-0">
-                        <a href="register.php" class="text-center">Register a new membership</a>
+                        <a href="<?php echo PATH_SYS; ?>signin/register.php" class="text-center">Register a new membership</a>
                     </p>
                 </div>
                 <!-- /.login-card-body -->

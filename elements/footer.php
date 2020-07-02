@@ -9,9 +9,9 @@
 <script>
     $(function () {
         $("a").find('.active').each(function () {
-            $(this).parent().closest('.has-treeview').addClass("menu-open");
+            $(this).parent();.closest('.has-treeview').addClass("menu-open");
 
-            $('.has-treeview').children('a').first().addClass("active");
+            $('.has-treeview').children('a').first();.addClass("active");
 
             $('.has-treeview').find('a').each(function () {
                 $(this).addClass("active");
@@ -27,7 +27,7 @@
     <script>
     $(function () {
         /* BOOTSTRAP SLIDER */
-        $('.slider').bootstrapSlider()
+        $('.slider').bootstrapSlider();
 
         /* ION SLIDER */
         $('#range_1').ionRangeSlider({
@@ -40,8 +40,8 @@
             prefix: '$',
             prettify: false,
             hasGrid: true
-        })
-        $('#range_2').ionRangeSlider()
+        });
+        $('#range_2').ionRangeSlider();
 
         $('#range_5').ionRangeSlider({
             min: 0,
@@ -51,7 +51,7 @@
             postfix: ' mm',
             prettify: false,
             hasGrid: true
-        })
+        });
         $('#range_6').ionRangeSlider({
             min: -50,
             max: 50,
@@ -61,8 +61,7 @@
             postfix: '°',
             prettify: false,
             hasGrid: true
-        })
-
+        });
         $('#range_4').ionRangeSlider({
             type: 'single',
             step: 100,
@@ -70,7 +69,7 @@
             from: 55000,
             hideMinMax: true,
             hideFromTo: false
-        })
+        });
         $('#range_3').ionRangeSlider({
             type: 'double',
             postfix: ' miles',
@@ -87,8 +86,8 @@
             onLoad: function (obj) {
                 //
             }
-        })
-    })
+        });
+    });
     </script>
 <?php } if ($fname === 'ribbons') { ?>
 
@@ -99,7 +98,7 @@
     <script>
     $(function () {
         /* BOOTSTRAP SLIDER */
-        $('.slider').bootstrapSlider()
+        $('.slider').bootstrapSlider();
 
         /* ION SLIDER */
         $('#range_1').ionRangeSlider({
@@ -112,8 +111,8 @@
             prefix: '$',
             prettify: false,
             hasGrid: true
-        })
-        $('#range_2').ionRangeSlider()
+        });
+        $('#range_2').ionRangeSlider();
 
         $('#range_5').ionRangeSlider({
             min: 0,
@@ -123,7 +122,7 @@
             postfix: ' mm',
             prettify: false,
             hasGrid: true
-        })
+        });
         $('#range_6').ionRangeSlider({
             min: -50,
             max: 50,
@@ -133,7 +132,7 @@
             postfix: '°',
             prettify: false,
             hasGrid: true
-        })
+        });
 
         $('#range_4').ionRangeSlider({
             type: 'single',
@@ -142,7 +141,7 @@
             from: 55000,
             hideMinMax: true,
             hideFromTo: false
-        })
+        });
         $('#range_3').ionRangeSlider({
             type: 'double',
             postfix: ' miles',
@@ -159,8 +158,8 @@
             onLoad: function (obj) {
                 //
             }
-        })
-    })
+        });
+    });
     </script>
 <?php } if ($fname === 'moddals') { ?>
     <!-- SweetAlert2 -->
@@ -179,145 +178,145 @@
         $('.swalDefaultSuccess').click(function () {
             Toast.fire({
                 icon: 'success',
-                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
+                title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
+            });
         });
         $('.swalDefaultInfo').click(function () {
             Toast.fire({
                 icon: 'info',
-                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
+                title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
+            });
         });
         $('.swalDefaultError').click(function () {
             Toast.fire({
                 icon: 'error',
-                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
+                title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
+            });
         });
         $('.swalDefaultWarning').click(function () {
             Toast.fire({
                 icon: 'warning',
-                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
+                title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
+            });
         });
         $('.swalDefaultQuestion').click(function () {
             Toast.fire({
                 icon: 'question',
-                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
+                title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
+            });
         });
 
         $('.toastrDefaultSuccess').click(function () {
-            toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+            toastr.success("Lorem ipsum dolor sit amet, consetetur sadipscing elitr.")
         });
         $('.toastrDefaultInfo').click(function () {
-            toastr.info('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+            toastr.info("Lorem ipsum dolor sit amet, consetetur sadipscing elitr.")
         });
         $('.toastrDefaultError').click(function () {
-            toastr.error('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+            toastr.error("Lorem ipsum dolor sit amet, consetetur sadipscing elitr.")
         });
         $('.toastrDefaultWarning').click(function () {
-            toastr.warning('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+            toastr.warning("Lorem ipsum dolor sit amet, consetetur sadipscing elitr.")
         });
 
         $('.toastsDefaultDefault').click(function () {
             $(document).Toasts('create', {
                 title: 'Toast Title',
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
+                body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
+            });
         });
         $('.toastsDefaultTopLeft').click(function () {
             $(document).Toasts('create', {
                 title: 'Toast Title',
                 position: 'topLeft',
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
+                body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
+            });
         });
         $('.toastsDefaultBottomRight').click(function () {
             $(document).Toasts('create', {
                 title: 'Toast Title',
                 position: 'bottomRight',
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
+                body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
+            });
         });
         $('.toastsDefaultBottomLeft').click(function () {
             $(document).Toasts('create', {
                 title: 'Toast Title',
                 position: 'bottomLeft',
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
+                body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
+            });
         });
         $('.toastsDefaultAutohide').click(function () {
             $(document).Toasts('create', {
                 title: 'Toast Title',
                 autohide: true,
                 delay: 750,
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
+                body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
+            });
         });
         $('.toastsDefaultNotFixed').click(function () {
             $(document).Toasts('create', {
                 title: 'Toast Title',
                 fixed: false,
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
+                body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
+            });
         });
         $('.toastsDefaultFull').click(function () {
             $(document).Toasts('create', {
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
+                body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
                 title: 'Toast Title',
                 subtitle: 'Subtitle',
                 icon: 'fas fa-envelope fa-lg',
-            })
+            });
         });
         $('.toastsDefaultFullImage').click(function () {
             $(document).Toasts('create', {
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
+                body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
                 title: 'Toast Title',
                 subtitle: 'Subtitle',
                 image: '../../dist/img/user3-128x128.jpg',
                 imageAlt: 'User Picture',
-            })
+            });
         });
         $('.toastsDefaultSuccess').click(function () {
             $(document).Toasts('create', {
                 class: 'bg-success',
                 title: 'Toast Title',
                 subtitle: 'Subtitle',
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
+                body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
+            });
         });
         $('.toastsDefaultInfo').click(function () {
             $(document).Toasts('create', {
                 class: 'bg-info',
                 title: 'Toast Title',
                 subtitle: 'Subtitle',
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
+                body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
+            });
         });
         $('.toastsDefaultWarning').click(function () {
             $(document).Toasts('create', {
                 class: 'bg-warning',
                 title: 'Toast Title',
                 subtitle: 'Subtitle',
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
+                body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
+            });
         });
         $('.toastsDefaultDanger').click(function () {
             $(document).Toasts('create', {
                 class: 'bg-danger',
                 title: 'Toast Title',
                 subtitle: 'Subtitle',
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
+                body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
+            });
         });
         $('.toastsDefaultMaroon').click(function () {
             $(document).Toasts('create', {
                 class: 'bg-maroon',
                 title: 'Toast Title',
                 subtitle: 'Subtitle',
-                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-            })
+                body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
+            });
         });
     });
 
@@ -371,40 +370,40 @@
                         this.o.cursor
                                 && (sa = ea - 0.3)
                                 && (ea = ea + 0.3)
-                        this.g.beginPath()
+                        this.g.beginPath();
                         this.g.strokeStyle = this.previousColor
                         this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sa, ea, false)
-                        this.g.stroke()
+                        this.g.stroke();
                     }
 
-                    this.g.beginPath()
+                    this.g.beginPath();
                     this.g.strokeStyle = r ? this.o.fgColor : this.fgColor
                     this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sat, eat, false)
-                    this.g.stroke()
+                    this.g.stroke();
 
                     this.g.lineWidth = 2
-                    this.g.beginPath()
+                    this.g.beginPath();
                     this.g.strokeStyle = this.o.fgColor
                     this.g.arc(this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false)
-                    this.g.stroke()
+                    this.g.stroke();
 
                     return false
                 }
             }
-        })
+        });
         /* END JQUERY KNOB */
 
         //INITIALIZE SPARKLINE CHARTS
         $('.sparkline').each(function () {
             var $this = $(this)
             $this.sparkline('html', $this.data())
-        })
+        });
 
         /* SPARKLINE DOCUMENTATION EXAMPLES https://omnipotent.net/jquery.sparkline/#s-about */
-        drawDocSparklines()
-        drawMouseSpeedDemo()
+        drawDocSparklines();
+        drawMouseSpeedDemo();
 
-    })
+    });
 
     function drawDocSparklines() {
 
@@ -412,17 +411,17 @@
         $('#compositebar').sparkline('html', {
             type: 'bar',
             barColor: '#aaf'
-        })
+        });
         $('#compositebar').sparkline([4, 1, 5, 7, 9, 9, 8, 7, 6, 6, 4, 7, 8, 4, 3, 2, 2, 5, 6, 7],
                 {
                     composite: true,
                     fillColor: false,
                     lineColor: 'red'
-                })
+                });
 
 
         // Line charts taking their values from the tag
-        $('.sparkline-1').sparkline()
+        $('.sparkline-1').sparkline();
 
         // Larger line charts for the docs
         $('.largeline').sparkline('html',
@@ -430,7 +429,7 @@
                     type: 'line',
                     height: '2.5em',
                     width: '4em'
-                })
+                });
 
         // Customized line chart
         $('#linecustom').sparkline('html',
@@ -443,10 +442,10 @@
                     maxSpotColor: false,
                     spotColor: '#77f',
                     spotRadius: 3
-                })
+                });
 
         // Bar charts using inline values
-        $('.sparkbar').sparkline('html', {type: 'bar'})
+        $('.sparkbar').sparkline('html', {type: 'bar'});
 
         $('.barformat').sparkline([1, 3, 5, 3, 8], {
             type: 'bar',
@@ -456,12 +455,12 @@
                     ':2': 'Low',
                     '3:6': 'Medium',
                     '7:': 'High'
-                })
+                });
             }
-        })
+        });
 
         // Tri-state charts using inline values
-        $('.sparktristate').sparkline('html', {type: 'tristate'})
+        $('.sparktristate').sparkline('html', {type: 'tristate'});
         $('.sparktristatecols').sparkline('html',
                 {
                     type: 'tristate',
@@ -469,14 +468,14 @@
                         '-2': '#fa7',
                         '2': '#44f'
                     }
-                })
+                });
 
         // Composite line charts, the second using values supplied via javascript
         $('#compositeline').sparkline('html', {
             fillColor: false,
             changeRangeMin: 0,
             chartRangeMax: 10
-        })
+        });
         $('#compositeline').sparkline([4, 1, 5, 7, 9, 9, 8, 7, 6, 6, 4, 7, 8, 4, 3, 2, 2, 5, 6, 7],
                 {
                     composite: true,
@@ -484,7 +483,7 @@
                     lineColor: 'red',
                     changeRangeMin: 0,
                     chartRangeMax: 10
-                })
+                });
 
         // Line charts with normal range marker
         $('#normalline').sparkline('html',
@@ -492,14 +491,14 @@
                     fillColor: false,
                     normalRangeMin: -1,
                     normalRangeMax: 8
-                })
+                });
         $('#normalExample').sparkline('html',
                 {
                     fillColor: false,
                     normalRangeMin: 80,
                     normalRangeMax: 95,
                     normalRangeColor: '#4f4'
-                })
+                });
 
         // Discrete charts
         $('.discrete1').sparkline('html',
@@ -507,60 +506,60 @@
                     type: 'discrete',
                     lineColor: 'blue',
                     xwidth: 18
-                })
+                });
         $('#discrete2').sparkline('html',
                 {
                     type: 'discrete',
                     lineColor: 'blue',
                     thresholdColor: 'red',
                     thresholdValue: 4
-                })
+                });
 
         // Bullet charts
-        $('.sparkbullet').sparkline('html', {type: 'bullet'})
+        $('.sparkbullet').sparkline('html', {type: 'bullet'});
 
         // Pie charts
         $('.sparkpie').sparkline('html', {
             type: 'pie',
             height: '1.0em'
-        })
+        });
 
         // Box plots
-        $('.sparkboxplot').sparkline('html', {type: 'box'})
+        $('.sparkboxplot').sparkline('html', {type: 'box'});
         $('.sparkboxplotraw').sparkline([1, 3, 5, 8, 10, 15, 18],
                 {
                     type: 'box',
                     raw: true,
                     showOutliers: true,
                     target: 6
-                })
+                });
 
         // Box plot with specific field order
         $('.boxfieldorder').sparkline('html', {
             type: 'box',
             tooltipFormatFieldlist: ['med', 'lq', 'uq'],
             tooltipFormatFieldlistKey: 'field'
-        })
+        });
 
         // click event demo sparkline
-        $('.clickdemo').sparkline()
+        $('.clickdemo').sparkline();
         $('.clickdemo').bind('sparklineClick', function (ev) {
             var sparkline = ev.sparklines[0],
-                    region = sparkline.getCurrentRegionFields()
+                    region = sparkline.getCurrentRegionFields();
             value = region.y
             alert('Clicked on x=' + region.x + ' y=' + region.y)
-        })
+        });
 
         // mouseover event demo sparkline
-        $('.mouseoverdemo').sparkline()
+        $('.mouseoverdemo').sparkline();
         $('.mouseoverdemo').bind('sparklineRegionChange', function (ev) {
             var sparkline = ev.sparklines[0],
-                    region = sparkline.getCurrentRegionFields()
+                    region = sparkline.getCurrentRegionFields();
             value = region.y
             $('.mouseoverregion').text('x=' + region.x + ' y=' + region.y)
         }).bind('mouseleave', function () {
             $('.mouseoverregion').text('')
-        })
+        });
     }
 
     /**
@@ -568,7 +567,7 @@
      ** This just attaches a handler to the mousemove event to see
      ** (roughly) how far the mouse has moved
      ** and then updates the display a couple of times a second via
-     ** setTimeout()
+     ** setTimeout();
      **/
     function drawMouseSpeedDemo() {
         var mrefreshinterval = 500 // update display every 500ms
@@ -586,10 +585,10 @@
             }
             lastmousex = mousex
             lastmousey = mousey
-        })
+        });
         var mdraw = function () {
-            var md = new Date()
-            var timenow = md.getTime()
+            var md = new Date();
+            var timenow = md.getTime();
             if (lastmousetime && lastmousetime != timenow) {
                 var pps = Math.round(mousetravel / (timenow - lastmousetime) * 1000)
                 mpoints.push(pps)
@@ -600,7 +599,7 @@
                 $('#mousespeed').sparkline(mpoints, {
                     width: mpoints.length * 2,
                     tooltipSuffix: ' pixels per second'
-                })
+                });
             }
             lastmousetime = timenow
             setTimeout(mdraw, mrefreshinterval)
@@ -640,7 +639,7 @@
             while (data.length < totalPoints) {
 
                 var prev = data.length > 0 ? data[data.length - 1] : 50,
-                        y = prev + Math.random() * 10 - 5
+                        y = prev + Math.random(); * 10 - 5
 
                 if (y < 0) {
                     y = 0
@@ -696,8 +695,8 @@
 
             interactive_plot.setData([getRandomData()])
 
-            // Since the axes don't change, we don't need to call plot.setupGrid()
-            interactive_plot.draw()
+            // Since the axes don't change, we don't need to call plot.setupGrid();
+            interactive_plot.draw();
             if (realtime === 'on') {
                 setTimeout(update, updateInterval)
             }
@@ -705,7 +704,7 @@
 
         //INITIALIZE REALTIME DATA FETCHING
         if (realtime === 'on') {
-            update()
+            update();
         }
         //REALTIME TOGGLE
         $('#realtime .btn').click(function () {
@@ -714,8 +713,8 @@
             } else {
                 realtime = 'off'
             }
-            update()
-        })
+            update();
+        });
         /*
          * END INTERACTIVE CHART
          */
@@ -767,7 +766,7 @@
             xaxis: {
                 show: true
             }
-        })
+        });
         //Initialize tooltip on hover
         $('<div class="tooltip-inner" id="line-chart-tooltip"></div>').css({
             position: 'absolute',
@@ -784,13 +783,13 @@
                         .css({
                             top: item.pageY + 5,
                             left: item.pageX + 5
-                        })
+                        });
                         .fadeIn(200)
             } else {
-                $('#line-chart-tooltip').hide()
+                $('#line-chart-tooltip').hide();
             }
 
-        })
+        });
         /* END LINE CHART */
 
         /*
@@ -817,7 +816,7 @@
             xaxis: {
                 show: false
             }
-        })
+        });
 
         /* END AREA CHART */
 
@@ -845,7 +844,7 @@
             xaxis: {
                 ticks: [[1, 'January'], [2, 'February'], [3, 'March'], [4, 'April'], [5, 'May'], [6, 'June']]
             }
-        })
+        });
         /* END BAR CHART */
 
         /*
@@ -888,12 +887,12 @@
             legend: {
                 show: false
             }
-        })
+        });
         /*
          * END DONUT CHART
          */
 
-    })
+    });
 
     /*
      * Custom Label formatter
@@ -921,7 +920,7 @@
         //- AREA CHART -
         //--------------
 
-        // Get context with jQuery - using jQuery's .get() method.
+        // Get context with jQuery - using jQuery's .get(); method.
         var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
 
         var areaChartData = {
@@ -977,7 +976,7 @@
             type: 'line',
             data: areaChartData,
             options: areaChartOptions
-        })
+        });
 
         //-------------
         //- LINE CHART -
@@ -993,13 +992,13 @@
             type: 'line',
             data: lineChartData,
             options: lineChartOptions
-        })
+        });
 
         //-------------
         //- DONUT CHART -
         //-------------
-        // Get context with jQuery - using jQuery's .get() method.
-        var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
+        // Get context with jQuery - using jQuery's .get(); method.
+        var donutChartCanvas = $('#donutChart').get(0).getContext('2d');
         var donutData = {
             labels: [
                 'Chrome',
@@ -1007,32 +1006,32 @@
                 'FireFox',
                 'Safari',
                 'Opera',
-                'Navigator',
+                'Navigator'
             ],
             datasets: [
                 {
                     data: [700, 500, 400, 600, 300, 100],
-                    backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+                    backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de']
                 }
             ]
-        }
+        };
         var donutOptions = {
             maintainAspectRatio: false,
-            responsive: true,
-        }
+            responsive: true
+        };
         //Create pie or douhnut chart
         // You can switch between pie and douhnut using the method below.
         var donutChart = new Chart(donutChartCanvas, {
             type: 'doughnut',
             data: donutData,
             options: donutOptions
-        })
+        });
 
         //-------------
         //- PIE CHART -
         //-------------
-        // Get context with jQuery - using jQuery's .get() method.
-        var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+        // Get context with jQuery - using jQuery's .get(); method.
+        var pieChartCanvas = $('#pieChart').get(0).getContext('2d');
         var pieData = donutData;
         var pieOptions = {
             maintainAspectRatio: false,
@@ -1044,42 +1043,42 @@
             type: 'pie',
             data: pieData,
             options: pieOptions
-        })
+        });
 
         //-------------
         //- BAR CHART -
         //-------------
-        var barChartCanvas = $('#barChart').get(0).getContext('2d')
-        var barChartData = $.extend(true, {}, areaChartData)
-        var temp0 = areaChartData.datasets[0]
-        var temp1 = areaChartData.datasets[1]
-        barChartData.datasets[0] = temp1
-        barChartData.datasets[1] = temp0
+        var barChartCanvas = $('#barChart').get(0).getContext('2d');
+        var barChartData = $.extend(true, {}, areaChartData);
+        var temp0 = areaChartData.datasets[0];
+        var temp1 = areaChartData.datasets[1];
+        barChartData.datasets[0] = temp1;
+        barChartData.datasets[1] = temp0;
 
         var barChartOptions = {
             responsive: true,
             maintainAspectRatio: false,
             datasetFill: false
-        }
+        };
 
         var barChart = new Chart(barChartCanvas, {
             type: 'bar',
             data: barChartData,
             options: barChartOptions
-        })
+        });
 
         //---------------------
         //- STACKED BAR CHART -
         //---------------------
-        var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
-        var stackedBarChartData = $.extend(true, {}, barChartData)
+        var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d');
+        var stackedBarChartData = $.extend(true, {}, barChartData);
 
         var stackedBarChartOptions = {
             responsive: true,
             maintainAspectRatio: false,
             scales: {
                 xAxes: [{
-                        stacked: true,
+                        stacked: true
                     }],
                 yAxes: [{
                         stacked: true
@@ -1091,8 +1090,8 @@
             type: 'bar',
             data: stackedBarChartData,
             options: stackedBarChartOptions
-        })
-    })
+        });
+    });
     </script>
 <?php } if ($fname === 'jsgrid') { ?>
     <!-- jsGrid -->
@@ -1162,11 +1161,11 @@
                     $('.checkbox-toggle .far.fa-square').removeClass('fa-square').addClass('fa-check-square')
                 }
                 $(this).data('clicks', !clicks)
-            })
+            });
 
             //Handle starring for font awesome
             $('.mailbox-star').click(function (e) {
-                e.preventDefault()
+                e.preventDefault();
                 //detect type
                 var $this = $(this).find('a > i')
                 var fa = $this.hasClass('fa')
@@ -1176,8 +1175,8 @@
                     $this.toggleClass('fa-star')
                     $this.toggleClass('fa-star-o')
                 }
-            })
-        })
+            });
+        });
     </script>
 <?php } if ($fname === 'advanced') { ?>
     <!-- Select2 -->
@@ -1200,26 +1199,26 @@
     <script>
         $(function () {
             //Initialize Select2 Elements
-            $('.select2').select2()
+            $('.select2').select2();
 
             //Initialize Select2 Elements
             $('.select2bs4').select2({
                 theme: 'bootstrap4'
-            })
+            });
 
             //Datemask dd/mm/yyyy
-            $('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'})
+            $('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'});
             //Datemask2 mm/dd/yyyy
-            $('#datemask2').inputmask('mm/dd/yyyy', {'placeholder': 'mm/dd/yyyy'})
+            $('#datemask2').inputmask('mm/dd/yyyy', {'placeholder': 'mm/dd/yyyy'});
             //Money Euro
-            $('[data-mask]').inputmask()
+            $('[data-mask]').inputmask();
 
             //Date range picker
             $('#reservationdate').datetimepicker({
                 format: 'L'
             });
             //Date range picker
-            $('#reservation').daterangepicker()
+            $('#reservation').daterangepicker();
             //Date range picker with time picker
             $('#reservationtime').daterangepicker({
                 timePicker: true,
@@ -1227,48 +1226,48 @@
                 locale: {
                     format: 'MM/DD/YYYY hh:mm A'
                 }
-            })
+            });
             //Date range as a button
             $('#daterange-btn').daterangepicker(
                     {
                         ranges: {
                             'Today': [moment(), moment()],
-                            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                            'This Month': [moment().startOf('month'), moment().endOf('month')],
-                            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                            'Yesterday': [moment();.subtract(1, 'days'), moment();.subtract(1, 'days')],
+                            'Last 7 Days': [moment();.subtract(6, 'days'), moment()],
+                            'Last 30 Days': [moment();.subtract(29, 'days'), moment()],
+                            'This Month': [moment();.startOf('month'), moment();.endOf('month')],
+                            'Last Month': [moment();.subtract(1, 'month').startOf('month'), moment();.subtract(1, 'month').endOf('month')]
                         },
-                        startDate: moment().subtract(29, 'days'),
-                        endDate: moment()
+                        startDate: moment();.subtract(29, 'days'),
+                        endDate: moment();
                     },
                     function (start, end) {
-                        $('#reportrange span').php(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+                        $('#reportrange span').php(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
                     }
-            )
+            );
 
             //Timepicker
             $('#timepicker').datetimepicker({
                 format: 'LT'
-            })
+            });
 
             //Bootstrap Duallistbox
-            $('.duallistbox').bootstrapDualListbox()
+            $('.duallistbox').bootstrapDualListbox();
 
             //Colorpicker
-            $('.my-colorpicker1').colorpicker()
+            $('.my-colorpicker1').colorpicker();
             //color picker with addon
-            $('.my-colorpicker2').colorpicker()
+            $('.my-colorpicker2').colorpicker();
 
             $('.my-colorpicker2').on('colorpickerChange', function (event) {
-                $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
+                $('.my-colorpicker2 .fa-square').css('color', event.color.toString(););
             });
 
             $("input[data-bootstrap-switch]").each(function () {
                 $(this).bootstrapSwitch('state', $(this).prop('checked'));
             });
 
-        })
+        });
     </script>
 <?php } if ($fname === 'editors') { ?>
     <!-- Summernote -->
@@ -1276,8 +1275,8 @@
     <script>
         $(function () {
             // Summernote
-            $('.textarea').summernote()
-        })
+            $('.textarea').summernote();
+        });
     </script>
 <?php } if ($fname === 'general') { ?>
     <!-- bs-custom-file-input -->
@@ -1303,7 +1302,7 @@
                 rules: {
                     email: {
                         required: true,
-                        email: true,
+                        email: true
                     },
                     password: {
                         required: true,
@@ -1348,7 +1347,7 @@
     <script>
         $(function () {
             //Add text editor
-            $('#compose-textarea').summernote()
-        })
+            $('#compose-textarea').summernote();
+        });
     </script>
 <?php } ?>

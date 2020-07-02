@@ -3,7 +3,7 @@ if (!isset($_SESSION)) {
     session_start();
 }
 require '../config/constants.php';
-require 'autoload.php';
+require 'Autoload.php';
 $definitions = new SiteDefinitions();
 $login = new UserClass();
 $check = new CheckValidUser();

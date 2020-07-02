@@ -146,7 +146,7 @@
         customLoading: false,
         pageLoading: false,
 
-        autoload: false,
+        Autoload: false,
         controller: defaultController,
 
         loadIndication: true,
@@ -376,7 +376,7 @@
 
         render: function() {
             this._renderGrid();
-            return this.autoload ? this.loadData() : $.Deferred().resolve().promise();
+            return this.Autoload ? this.loadData() : $.Deferred().resolve().promise();
         },
 
         _renderGrid: function() {

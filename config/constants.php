@@ -20,6 +20,7 @@ $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
 if ($conn->connect_error) {
     die('Error, Database connection failed: (' . $conn->connect_errno . ') ' . $conn->connect_error);
 }
+
 $conn->set_charset("utf8mb4");
 
 $serv = "http://" . $_SERVER['HTTP_HOST'] . "/Secure-PHP-Login-adminLTE-3/";
