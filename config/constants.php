@@ -5,7 +5,7 @@
 define('DBHOST', 'localhost'); // Add your host
 define('DBUSER', 'root'); // Add your username
 define('DBPASS', 'truelove'); // Add your password
-define('DBNAME', 'projectloginsystem'); // Add your database name
+define('DBNAME', 'inv1'); // Add your database name
 
 /* Credentials for app use another database */
 

@@ -21,7 +21,7 @@ $urw = $result->fetch_assoc();
  * $stmt->store_result();
  */
 if ($result->num_rows === 0) {
-    define('NAMES', $urw['nombre']);
+    define('NAMES', $urw['firstname']);
 } else {
     unset($_SESSION['username']);
     unset($_SESSION['user_id']);

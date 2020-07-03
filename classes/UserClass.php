@@ -84,11 +84,11 @@ class UserClass {
         if (isset($_POST['signin'])) {
 // Check that both username and password fields are filled with values.
             if (empty($_POST['email'])) {
-                $_SESSION['ErrorMessage'] = 'Por favor llene la casilla de correo.';
+                $_SESSION['ErrorMessage'] = 'Please fill in the email field.';
             } elseif (empty($_POST['password'])) {
-                $_SESSION['ErrorMessage'] = 'Por favor llene la casilla de Contraseña.';
+                $_SESSION['ErrorMessage'] = 'Please fill in the Password field.';
             } elseif (empty($_POST['PIN'])) {
-                $_SESSION['ErrorMessage'] = 'Por favor llene la casilla de PIN.';
+                $_SESSION['ErrorMessage'] = 'Please fill in the PIN field.';
             } else {
 // verify if PIN is numeric
                 if (is_numeric($_POST['PIN']) && strlen($_POST['PIN']) === 6) {
@@ -106,7 +106,7 @@ class UserClass {
                     $stmt->bind_param("ss", $useremail, $userpin);
                     $stmt->execute();
                     if ($stmt->num_rows === 0) {
-                        $_SESSION['ErrorMessage'] = 'Los datos son erroneos.';
+                        $_SESSION['ErrorMessage'] = 'The data is wrong.';
                         header('Location: login.php');
                     }
                     $result = $stmt->get_result();
@@ -114,7 +114,23 @@ class UserClass {
 //fetching result would go here, but will be covered later
                     $stmt->close();
 
-                    if ($urw['is_activated'] === 1 & $urw['banned'] === 0) {
+                    if (!empty($urw['password_key'])) {
+                        $_SESSION['ErrorMessage'] = 'Your account is not active by request for password recovery, check your email or please contact support';
+                        header("Location: login.php");
+                        exit();
+                    }
+                    if (!empty($urw['pin_key'])) {
+                        $_SESSION['ErrorMessage'] = 'Your account is not active by request for PIN recovery, check your email or please contact support.';
+                        header("Location: login.php");
+                        exit();
+                    }
+                    if ($urw['banned'] === 1) {
+                        $_SESSION['ErrorMessage'] = 'Access could not be completed, account may be blocked, please contact support.';
+                        header("Location: login.php");
+                        exit();
+                    }
+
+                    if ($urw['is_activated'] === 1 && $urw['banned'] === 0) {
                         $user = $urw['username'];
                         $cml = $urw['email'];
                         $passw = $urw['password'];
@@ -132,69 +148,72 @@ class UserClass {
 
                         if ($passw === $pass) {
 
-                            if ($actv === 1 && $ban === 0) {
-                                if ($rpa === 0) {
-                                    $_SESSION['AlertMessage'] = 'Se necesita crear la frase de recuperación por seguridad.';
-                                    $_SESSION['RecoveryMessage'] = 1;
-                                }
 
-                                $stmt1 = $conn->prepare("SELECT * FROM users WHERE username = ? AND email = ? AND password = ? AND mkpin = ?");
-                                $stmt1->bind_param("ssss", $user, $mail, $passw, $userpin);
-                                $stmt1->execute();
-//fetching result would go here, but will be covered later
-                                $sqr = $stmt1->get_result();
-                                if ($sqr->num_rows === 0) {
-                                    $_SESSION['ErrorMessage'] = 'Los datos son erroneos.';
-                                    header('Location: login.php');
-                                }
-                                $row = $sqr->fetch_assoc();
-                                $stmt->close();
-
-                                $iduv = $row['idUser'];
-                                $upas = $row['password'];
-
-                                function encKey($len = 32) {
-                                    return substr(sha1(openssl_random_pseudo_bytes(17)), - $len);
-                                }
-
-                                $enck = enckey();
-
-                                $up1 = $conn->prepare("UPDATE uverify SET mkhash = ? WHERE iduv = ? AND password = ?");
-                                $up1->bind_param("sss", $enck, $iduv, $upas);
-                                $up1->execute();
-                                $inst1 = $up1->affected_rows;
-                                $up1->close();
-
-                                $pro = $conn->prepare("UPDATE profiles SET mkhash = ? WHERE idp = ? AND mkhash = ?");
-                                $pro->bind_param("sss", $enck, $iduv, $secret_hs);
-                                $pro->execute();
-                                $inst2 = $pro->affected_rows;
-                                $pro->close();
-
-                                if ($inst1 === 1 && $inst2 === 1) {
-                                    $_SESSION['user_id'] = $row['idUser'];
-                                    $_SESSION['language'] = $row['language'];
-                                    $_SESSION['levels'] = $level;
-                                    $_SESSION['hash'] = $enck;
-                                    $_SESSION['SuccessMessage'] = 'Felicitaciones usted ahora tiene acceso.';
-                                } else {
-                                    $_SESSION['ErrorMessage'] = 'Error en el acceso.';
-                                    session_destroy();
-                                }
-
-
-                                header("Location: index.php");
-                            } else {
-                                $_SESSION['ErrorMessage'] = 'No se pudo completar el acceso, puede que no este bloqueado, comuniquese con el soporte.';
+                            if ($rpa === 0) {
+                                $_SESSION['AlertMessage'] = 'Recovery phrase needs to be created for your safety.';
+                                $_SESSION['RecoveryMessage'] = 1;
                             }
+
+                            $stmt1 = $conn->prepare("SELECT * FROM users WHERE username = ? AND email = ? AND password = ? AND mkpin = ?");
+                            $stmt1->bind_param("ssss", $user, $mail, $passw, $userpin);
+                            $stmt1->execute();
+//fetching result would go here, but will be covered later
+                            $sqr = $stmt1->get_result();
+                            if ($sqr->num_rows === 0) {
+                                $_SESSION['ErrorMessage'] = 'The data is wrong.';
+                                header('Location: login.php');
+                            }
+                            $row = $sqr->fetch_assoc();
+                            $stmt->close();
+
+                            $iduv = $row['idUser'];
+                            $upas = $row['password'];
+
+                            function encKey($len = 32) {
+                                return substr(sha1(openssl_random_pseudo_bytes(17)), - $len);
+                            }
+
+                            $enck = enckey();
+
+                            $up1 = $conn->prepare("UPDATE uverify SET mkhash = ? WHERE iduv = ? AND password = ?");
+                            $up1->bind_param("sss", $enck, $iduv, $upas);
+                            $up1->execute();
+                            $inst1 = $up1->affected_rows;
+                            $up1->close();
+
+                            $pro = $conn->prepare("UPDATE profiles SET mkhash = ? WHERE idp = ? AND mkhash = ?");
+                            $pro->bind_param("sss", $enck, $iduv, $secret_hs);
+                            $pro->execute();
+                            $inst2 = $pro->affected_rows;
+                            $pro->close();
+
+                            if ($inst1 === 1 && $inst2 === 1) {
+                                $_SESSION['user_id'] = $row['idUser'];
+                                $_SESSION['language'] = $row['language'];
+                                $_SESSION['levels'] = $level;
+                                $_SESSION['hash'] = $enck;
+                                $_SESSION['SuccessMessage'] = 'Congratulations you now have access!';
+                            } else {
+                                $_SESSION['ErrorMessage'] = 'Access error!';
+                                session_destroy();
+                            }
+
+
+                            header("Location: index.php");
                         } else {
-                            $_SESSION['ErrorMessage'] = 'Usuario o contraseña invalido.';
+                            $_SESSION['ErrorMessage'] = 'Invalid username or password.';
+                            header("Location: login.php");
+                            exit();
                         }
                     } else {
-                        $_SESSION['ErrorMessage'] = 'El usuario no esta activado o bloqueado.';
+                        $_SESSION['ErrorMessage'] = 'your account is not active, some process is incomplete, please contact support.';
+                        header("Location: login.php");
+                        exit();
                     }
                 } else {
-                    $_SESSION['ErrorMessage'] = 'El PIN no es numerico o no esta completo.';
+                    $_SESSION['ErrorMessage'] = 'The PIN is not numeric or is not complete.';
+                    header("Location: login.php");
+                    exit();
 // header("Location: login.php");
                 }
             }
@@ -398,7 +417,7 @@ class UserClass {
         if ($result->num_rows > 0) {
             include ("views/passwordResetForm.php");
         } else {
-            $_SESSION['ErrorMessage'] = 'Por favor, póngase en contacto con soporte en contact@labemotion.net';
+            $_SESSION['ErrorMessage'] = 'Please contact support at contact@labemotion.net';
         }
         $conn->close();
     }
@@ -431,7 +450,7 @@ class UserClass {
 // Check if email is in the correct format.
                 if (!preg_match("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^", $email)) {
                     header('Location: registration.php');
-                    $_SESSION['ErrorMessage'] = 'Por favor inserte el correo electrónico correcto.';
+                    $_SESSION['ErrorMessage'] = 'Please insert the correct email.';
                     exit();
                 }
 
@@ -439,7 +458,7 @@ class UserClass {
                 if ($result->num_rows != 0) {
 // Promt user error about username or email already taken.
                     header('Location: registration.php');
-                    $_SESSION['ErrorMessage'] = 'Se toma nombre de usuario o correo electrónico!';
+                    $_SESSION['ErrorMessage'] = 'Firstname is taken from user or email!';
                     exit();
                 } else {
 // Insert data into database
@@ -452,33 +471,33 @@ class UserClass {
 // Send user activation e-mail
 
                     $to = $email;
-                    $subject = "Su código de activación para Membresía.";
+                    $subject = "Your activation code for registration.";
                     $from = 'contact@labemotion.net'; // This should be changed to an email that you would like to send activation e-mail from.
-                    $body = 'Tu código de activación es: ' . $code . '<br> Para activar su cuenta, haga clic en el siguiente enlace' . ' <a href="' . $this->baseurl . '/verify.php?id=' . $email . '&code=' . $code . '">verify.php?id=' . $email . '&code=' . $code . '</a>.'; // Input the URL of your website.
+                    $body = 'Please follow the steps below <br> To activate your account, click on the following link' . ' <a href="' . $this->baseurl . '/verify.php?id=' . $email . '&code=' . $code . '">Click for activete your account</a>.'; // Input the URL of your website.
                     $headers = "From: " . $from . "\r\n";
                     $headers .= "Reply-To: " . $from . "\r\n";
                     $headers .= "MIME-Version: 1.0\r\n";
                     $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
                     $success = mail($to, $subject, $body, $headers);
                     if ($success === true) {
-                        $_SESSION['SuccessMessage'] = '¡Se le envio un mensaje a su bandeja de correo para activar su nueva cuenta! ';
+                        $_SESSION['SuccessMessage'] = 'A message was sent to your mailbox to activate your new account! ';
                     } else {
-                        $_SESSION['ErrorMessage'] = '¡Error al enviar un mensaje a su bandeja de correo para activar su nueva cuenta! ';
+                        $_SESSION['ErrorMessage'] = 'Error sending a message to your mailbox to activate your new account! ';
                     }
 // If registration is successful return user to registration.php and promt user success pop-up.
+                    $_SESSION['ErrorMessage'] = 'The user has been created!';
                     header('Location: register.php');
-                    $_SESSION['ErrorMessage'] = '¡El usuario ha sido creado!';
                     exit();
                 }
             } else {
 // If registration fails return user to registration.php and promt user failure error.
+                $_SESSION['ErrorMessage'] = 'Please complete all fields!';
                 header('Location: register.php');
-                $_SESSION['ErrorMessage'] = '¡Por favor llena todos los espacios!';
                 exit();
             }
         } else {
+            $_SESSION['ErrorMessage'] = 'Passwords do not match!';
             header('Location: register.php');
-            $_SESSION['ErrorMessage'] = '¡Las contraseñas no coinciden!';
             exit();
         }
         $conn->close();

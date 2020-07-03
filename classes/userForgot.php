@@ -73,29 +73,29 @@ class userForgot {
                 $startT = date("Y-m-d H:i:s");
                 $expireT = date('Y-m-d H:i:s', strtotime('+2 hour', strtotime($startT)));
                 $stmt1 = $conn->prepare("INSERT INTO forgot_pass (username, email, password_key, expire) VALUES (?,?,?,?)");
-                $stmt1->bind_param("sss", $uname, $email, $forgot_password_key, $expireT);
+                $stmt1->bind_param("ssss", $uname, $email, $forgot_password_key, $expireT);
                 $stmt1->execute();
                 $stmt1->close();
-               
+
                 $to = $email;
-                $subject = "Restablecer la contraseña";
+                $subject = "Reset your password";
                 $from = 'contact@labemotion.net'; // Insert the e-mail from where you want to send the emails.
-                $body = "Su clave de reinicio es: " . $forgot_password_key . "\n";
-                $body .= '<a href="' . $this->baseurl . '/signin/password_reset.php?email=' . $email . '&key=' . $forgot_password_key . '&hash=' . $hash . '">Haga click para restaurar su contraseña.</a>'; // Replace YOURWEBSITEURL with your own URL for the link to work.
+                $body = "Your reset key is: " . $forgot_password_key . "\n";
+                $body .= '<a href="' . $this->baseurl . '/signin/password_reset.php?email=' . $email . '&key=' . $forgot_password_key . '&hash=' . $hash . '">Click to reset your password.</a>'; // Replace YOURWEBSITEURL with your own URL for the link to work.
                 $headers = "From: " . $from . "\r\n";
                 $headers .= "Reply-To: " . $from . "\r\n";
                 $headers .= "MIME-Version: 1.0\r\n";
                 $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
                 $success = mail($to, $subject, $body, $headers);
                 if ($success === true) {
-                    $_SESSION['SuccessMessage'] = 'E-mail ha sido enviado.' . '\n' .
-                            '¡El correo electrónico contiene los pasos a seguir para el reinicio de su contraseña!';
+                    $_SESSION['SuccessMessage'] = 'Email has been sent.' . '\n' .
+                            'The email contains the steps to follow to reset your password!';
                 } else {
-                    $_SESSION['ErrorMessage'] = '¡Error al enviar un mensaje a su correo electrónico';
+                    $_SESSION['ErrorMessage'] = 'Error sending a message to your email!';
                 }
 // Always give this message to prevent data colleting even if the e-mail doesn't exist(The password reset e-mail is only sent if the e-mail exists in database).
             } else {
-                $_SESSION['ErrorMessage'] = 'E-mail no existe o es incorrecto.';
+                $_SESSION['ErrorMessage'] = 'Email does not exist or is incorrect!';
             }
         }
         $conn->close();
@@ -114,15 +114,13 @@ class userForgot {
             $stmt = $conn->prepare("SELECT username, email, mkhash FROM uverify WHERE email = ?");
             $stmt->bind_param("s", $email);
             $stmt->execute();
-            $inst = $stmt->affected_rows;
             $result = $stmt->get_result();
             $urw = $result->fetch_assoc();
-            /* bind result variables */
             $stmt->close();
-            $mkhash = $urw['mkhash'];
+            $hash = $urw['mkhash'];
             $uname = $urw['username'];
 // If e-mail exists a key for password reset is created into database, after this an e-mail will be sent to user with link and the token key.
-            if ($inst === 1) {
+            if ($result->num_rows === 1) {
 
                 function enfKey($len = 64) {
                     return substr(sha1(openssl_random_pseudo_bytes(19)), - $len);
@@ -143,10 +141,10 @@ class userForgot {
                 $stmt1->close();
 
                 $to = $email;
-                $subject = "Restablecer el PIN";
+                $subject = "Reset PIN";
                 $from = 'contact@labemotion.net'; // Insert the e-mail from where you want to send the emails.
-                $body = "Su clave de reinicio es: " . $forgot_pin_key . "\n";
-                $body .= '<a href="' . $this->baseurl . '/signin/pin_reset.php?email=' . $email . '&key=' . $forgot_pin_key . '&hash=' . $mkhash . '">Haga click aqui para resetear su PIN</a>'; // Replace YOURWEBSITEURL with your own URL for the link to work.
+                $body = "Your reset key is: " . $forgot_pin_key . "\n";
+                $body .= '<a href="' . $this->baseurl . '/signin/pin_reset.php?email=' . $email . '&key=' . $forgot_pin_key . '&hash=' . $hash . '">Click here to reset your PIN</a>'; // Replace YOURWEBSITEURL with your own URL for the link to work.
                 $headers = "From: " . $from . "\r\n";
                 $headers .= "Reply-To: " . $from . "\r\n";
                 $headers .= "MIME-Version: 1.0\r\n";
@@ -154,13 +152,13 @@ class userForgot {
                 $success = mail($to, $subject, $body, $headers);
 // Always give this message to prevent data colleting even if the e-mail doesn't exist(The password reset e-mail is only sent if the e-mail exists in database).
                 if ($success === true) {
-                    $_SESSION['SuccessMessage'] = 'E-mail ha sido enviado.' . '\n' .
-                            '¡El correo electrónico contiene los pasos a seguir para el reinicio de su PIN!';
+                    $_SESSION['SuccessMessage'] = 'Email has been sent.' . '\n' .
+                            'The email contains the steps to follow to reset your PIN!';
                 } else {
-                    $_SESSION['ErrorMessage'] = '¡Error al enviar un mensaje a su correo electrónico';
+                    $_SESSION['ErrorMessage'] = 'Error sending a message to your email!';
                 }
             } else {
-                $_SESSION['ErrorMessage'] = 'E-mail no existe o es incorrecto.';
+                $_SESSION['ErrorMessage'] = 'Email does not exist or is incorrect.';
             }
         }
         $conn->close();
@@ -195,7 +193,7 @@ class userForgot {
                 $et = $ct['expire'];
 
                 if ($nowTime >= $et) {
-                    $_SESSION['ErrorMessage'] = 'Expiro el tiempo para resetear su contraseña.';
+                    $_SESSION['ErrorMessage'] = 'Time expired to reset your password.';
                     header('Location: index.php');
                 }
                 if (!empty($password3) && !empty($email)) {
@@ -271,13 +269,13 @@ class userForgot {
                                 header('Location: index.php');
                             }
                         } else {
-                            $_SESSION['ErrorMessage'] = 'No coinciden los datos para actualizar su contraseña.';
+                            $_SESSION['ErrorMessage'] = 'The data does not match to update your password.';
                         }
                     } else {
-                        $_SESSION['ErrorMessage'] = '¡Las contraseñas no coinciden!';
+                        $_SESSION['ErrorMessage'] = 'Passwords do not match!';
                     }
                 } else {
-                    $_SESSION['ErrorMessage'] = 'Por favor llene todos los campos requeridos.';
+                    $_SESSION['ErrorMessage'] = 'Please fill in all the required fields.';
                 }
                 $conn->close();
             }
@@ -313,7 +311,7 @@ class userForgot {
                 $et = $ct['expire'];
 
                 if ($nowTime >= $et) {
-                    $_SESSION['ErrorMessage'] = 'Expiro el tiempo para resetear su PIN.';
+                    $_SESSION['ErrorMessage'] = 'Time expired to reset your PIN.';
                     header('Location: index.php');
                 }
 // User input from Forgot password form(passwordResetForm.php).
@@ -369,13 +367,13 @@ class userForgot {
                                 }
                             }
                         } else {
-                            $_SESSION['ErrorMessage'] = 'No coinciden los datos para actualizar su contraseña.';
+                            $_SESSION['ErrorMessage'] = 'The data does not match to update your PIN.';
                         }
                     } else {
-                        $_SESSION['ErrorMessage'] = 'Por favor llene todos los campos requeridos.';
+                        $_SESSION['ErrorMessage'] = 'Please fill in all the required fields.';
                     }
                 } else {
-                    $_SESSION['ErrorMessage'] = '¡Las contraseñas no coinciden!';
+                    $_SESSION['ErrorMessage'] = 'Passwords do not match!';
                 }
             }
             $conn->close();

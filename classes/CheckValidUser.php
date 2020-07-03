@@ -17,12 +17,12 @@ class CheckValidUser {
          * $stmt->store_result();
          */
         if ($result->num_rows === 1) {
-            define('USERS_NAMES', $urw['nombre']);
-            define('USERS_lASTNAMES', $urw['apellido']);
-            define('USERS_FULLNAMES', $urw['nombre'].' '.$urw['apellido']);
+            define('USERS_NAMES', $urw['firstname']);
+            define('USERS_lASTNAMES', $urw['lastname']);
+            define('USERS_FULLNAMES', $urw['firstname'].' '.$urw['lastname']);
             define('USERS_AVATARS', $urw['avatar']);
-            define('USERS_SKILLS', $urw['profesion']);
-            define('USERS_CURRENTS_OCCUPATION', $urw['ocupacion']);
+            define('USERS_SKILLS', $urw['profession']);
+            define('USERS_CURRENTS_OCCUPATION', $urw['occupation']);
         } else {            
             unset($_SESSION['user_id']);
             unset($_SESSION['level']);

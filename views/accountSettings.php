@@ -58,6 +58,21 @@ if ($rquery->num_rows > 0) {
                         <?php unset($_SESSION['SuccessMessage']); ?>
                     </div>
                 <?php endif; ?>
+                <?php if (!empty($_SESSION['ErrorMessage'])): ?>
+                    <div class="alert alert-danger alert-container" id="alert">
+                        <strong><?php echo htmlentities($_SESSION['ErrorMessage']) ?></strong>
+                        <?php unset($_SESSION['ErrorMessage']); ?>
+                    </div>
+                <?php endif; ?>
+                <?php if (!empty($_SESSION['AlertMessage'])): ?>
+                    <div class="alert alert-danger alert-container" id="alert">
+                        <strong><center><?php echo htmlentities($_SESSION['AlertMessage']) ?></center></strong>                                       
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row pt-2">        
                 <div class="col-md-12">
                     <form action="profile.php" method="post" role="form" id="add_info">
                         <div class="form-group">
@@ -69,47 +84,47 @@ if ($rquery->num_rows > 0) {
                             <input type="text" class="form-control" id="email" name="email">
                         </div>
                         <div class="form-group">
-                            <label for="nombre">Nombre:</label> 
-                            <input type="text" class="form-control" id="nombre" name="nombre">
+                            <label for="firstname">Firstname:</label> 
+                            <input type="text" class="form-control" id="firstname" name="firstname">
                         </div>
                         <div class="form-group">
-                            <label for="apellido">Apellido:</label> 
-                            <input type="text" class="form-control" id="apellido" name="apellido">
+                            <label for="lastname">Lastname:</label> 
+                            <input type="text" class="form-control" id="lastname" name="lastname">
                         </div>
                         <div class="form-group">
-                            <label for="telefono">Telefono:</label> 
-                            <input type="text" class="form-control" id="telefono" name="telefono">
+                            <label for="phone">phone:</label> 
+                            <input type="text" class="form-control" id="phone" name="phone">
                         </div>
                         <div class="form-group">
-                            <label for="direccion">Direccion:</label> 
-                            <input type="text" class="form-control" id="direccion" name="direccion">
+                            <label for="address">address:</label> 
+                            <input type="text" class="form-control" id="address" name="address">
                         </div>
                         <div class="form-group">
-                            <label for="genero">Genero:</label> 
-                            <select type="text" class="form-control" id="genero" name="genero">
-                                <option value="Mujer">Mujer</option>
-                                <option value="Varon">Varon</option>
+                            <label for="gender">Gender:</label> 
+                            <select type="text" class="form-control" id="gender" name="gender">
+                                <option value="Woman">Woman</option>
+                                <option value="Male">Male</option>
                                 <option value="No lo sabe">No lo sabe</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="edad">Edad:</label> 
-                            <input type="text" class="form-control" id="edad" name="edad">
+                            <label for="age">Age:</label> 
+                            <input type="text" class="form-control" id="age" name="age">
                         </div>
                         <div class="form-group">
-                            <label for="cumpleanos">Cumpleños:</label> 
-                            <input type="text" data-date-format="dd/mm/yyyy" class="form-control" id="cumpleanos" name="cumpleanos">
+                            <label for="birthday">Cumpleños:</label> 
+                            <input type="text" data-date-format="dd/mm/yyyy" class="form-control" id="birthday" name="birthday">
                         </div>
                         <script type="text/javascript">
                             $(document).ready(function ()
                             {
-                                $("#cumpleanos").datepicker({
+                                $("#birthday").datepicker({
                                     weekStart: 1,
                                     daysOfWeekHighlighted: "6,0",
                                     autoclose: true,
                                     todayHighlight: true
                                 });
-                                $("#cumpleanos").datepicker("setDate", new Date());
+                                $("#birthday").datepicker("setDate", new Date());
                             });
                         </script>
                         <div class="form-group">
