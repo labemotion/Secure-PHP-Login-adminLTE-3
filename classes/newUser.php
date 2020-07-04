@@ -27,7 +27,7 @@ class newUser {
 
     public function risValidEmail($str) {
         if (!preg_match("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^", $str)) {
-            $_SESSION['ErrorMessage'] = 'Por favor inserte el correo electrónico correcto.';
+            $_SESSION['ErrorMessage'] = 'Please insert the correct email.';
             exit();
         }
         return filter_var($str, FILTER_VALIDATE_EMAIL);
@@ -54,7 +54,13 @@ class newUser {
             $username = $this->procheck($_POST['username']);
             $email = $this->procheck($_POST['email']);
             $password = $this->procheck($_POST['password']);
-            $repassword = $this->procheck($_POST['repassword']);
+            $repassword = $this->procheck($_POST['password2']);
+            $agree = $this->procheck($_POST['agreeTerms']);
+            if ($agree != 'agree') {
+                $_SESSION['ErrorMessage'] = "You need to accept the terms and conditions, to register your account!";
+                header('Location: register.php');
+                exit();
+            }
 
             $dt = new DateTime();
             $time = $dt->format('Y-m-d H:i:s');
@@ -129,13 +135,7 @@ class newUser {
                     $mvd = 0;
                     $ban = 1;
                     $is_actd = 0;
-// adding data in table users and info
-                    $stmt = $conn->prepare("INSERT INTO users (idUser,username,email,password,status,ip,signup_time,email_verified,document_verified,mobile_verified) "
-                            . "VALUES (?,?,?,?,?,?,?,?,?,?)");
-                    $stmt->bind_param("ssssisssii", $newid, $username, $cml, $pass, $status, $ip, $time, $code, $dvd, $mvd);
-                    $stmt->execute();
-                    $inst1 = $stmt->affected_rows;
-                    $stmt->close();
+
 // adding data in table uverify
                     $stmt1 = $conn->prepare("INSERT INTO uverify (iduv,username,email,password,mktoken,mkkey,mkhash,mkpin,activation_code,is_activated,banned) "
                             . "VALUES (?,?,?,?,?,?,?,?,?,?,?)");
@@ -143,6 +143,15 @@ class newUser {
                     $stmt1->execute();
                     $inst2 = $stmt1->affected_rows;
                     $stmt1->close();
+
+// adding data in table users and info
+                    $stmt = $conn->prepare("INSERT INTO users (idUser,username,email,password,status,ip,signup_time,email_verified,document_verified,mobile_verified) "
+                            . "VALUES (?,?,?,?,?,?,?,?,?,?)");
+                    $stmt->bind_param("ssssisssii", $newid, $username, $cml, $pass, $status, $ip, $time, $code, $dvd, $mvd);
+                    $stmt->execute();
+                    $inst1 = $stmt->affected_rows;
+                    $stmt->close();
+
 // adding data in table info
                     $info = $conn->prepare("INSERT INTO profiles(idp) VALUES (?)");
                     $info->bind_param("s", $newid);
@@ -188,20 +197,20 @@ class newUser {
 
     private function sendEmail($email, $pin, $code, $enck) {
         $to = $email;
-        $subject = "Su código de activación para Membresía.";
+        $subject = "Your code to activate your account.";
         $from = 'contact@labemotion.net'; // This should be changed to an email that you would like to send activation e-mail from.
-        $body = 'Tu codigo PIN de acceso es: <b>' . $pin . '</b>' . "\r\n" . 'Te recomendamos guardarlo, no necesitaras para acceder con tu contraseña.' . "\r\n";
-        $body .= 'Para activar su cuenta, haga clic en el siguiente enlace' . "\r\n" . ' <a href="' . $this->baseurl . '/verify.php?id=' . $email . '&code=' . $code . '&hash=' . $enck . '">Verifique su correo electrónico</a>' . "\r\n"; // Input the URL of your website.
-        $body .= 'Ingresa y crea tu frase de recuperación.';
+        $body = 'Your access PIN code is: <b>' . $pin . '</b>' . "\r\n" . 'We recommend saving it, you do not need to access it with your password.' . "\r\n";
+        $body .= 'To activate your account, click on the following link' . "\r\n" . ' <a href="' . $this->baseurl . '/verify.php?id=' . $email . '&code=' . $code . '&hash=' . $enck . '">Verify your email</a>' . "\r\n"; // Input the URL of your website.
+        $body .= 'Login to your account and create your recovery phrase.';
         $headers = "From: " . $from . "\r\n";
         $headers .= "Reply-To: " . $from . "\r\n";
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
         $success = mail($to, $subject, $body, $headers);
         if ($success === true) {
-            $_SESSION['SuccessMessage'] = '¡Se le envio un mensaje a su bandeja de correo para verificar su nueva cuenta! ';
+            $_SESSION['SuccessMessage'] = 'A message was sent to your mailbox to verify your new account! ';
         } else {
-            $_SESSION['ErrorMessage'] = '¡Error al enviar un mensaje a su bandeja de correo para verificar su nueva cuenta! ';
+            $_SESSION['ErrorMessage'] = 'Error sending a message to your mailbox to verify your new account! ';
         }
     }
 
@@ -212,8 +221,8 @@ class newUser {
         $update->bind_param("ss", $upin, $upid);
         $update->execute();
         if ($update->affected_rows === 1) {
-            $_SESSION['SuccessMessage'] = '¡El usuario ha sido creado! '
-                    . '¡El usuario se a registrado con exito!'
+            $_SESSION['SuccessMessage'] = 'The user has been created! '
+                    . 'The user has successfully registered!'
                     . '<meta http-equiv="refresh" content="3;URL=index.php" />';
         }
         $update->close();

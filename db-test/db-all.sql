@@ -41,7 +41,7 @@ DELETE FROM `active_users`;
 DROP TABLE IF EXISTS `admins`;
 CREATE TABLE IF NOT EXISTS `admins` (
   `adminid` char(23) NOT NULL DEFAULT 'uuid_short();',
-  `userid` char(23) NOT NULL,
+  `userid` char(128) NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT 0,
   `superadmin` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`adminid`,`userid`),
@@ -97,241 +97,11 @@ DELETE FROM `app_config`;
 /*!40000 ALTER TABLE `app_config` DISABLE KEYS */;
 /*!40000 ALTER TABLE `app_config` ENABLE KEYS */;
 
--- Volcando estructura para tabla inv1.a_customers
-DROP TABLE IF EXISTS `a_customers`;
-CREATE TABLE IF NOT EXISTS `a_customers` (
-  `Customer_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Customer_Number` varchar(20) NOT NULL,
-  `Customer_Name` varchar(50) NOT NULL,
-  `Address` text NOT NULL,
-  `City` varchar(50) NOT NULL,
-  `Country` varchar(30) NOT NULL,
-  `Contact_Person` varchar(50) NOT NULL,
-  `Phone_Number` varchar(50) NOT NULL,
-  `Email` varchar(100) NOT NULL,
-  `Mobile_Number` varchar(50) NOT NULL,
-  `Notes` varchar(50) NOT NULL,
-  `Balance` double DEFAULT 0,
-  `Date_Added` datetime DEFAULT NULL,
-  `Added_By` varchar(50) DEFAULT NULL,
-  `Date_Updated` datetime DEFAULT NULL,
-  `Updated_By` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`Customer_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Volcando datos para la tabla inv1.a_customers: ~0 rows (aproximadamente)
-DELETE FROM `a_customers`;
-/*!40000 ALTER TABLE `a_customers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `a_customers` ENABLE KEYS */;
-
--- Volcando estructura para tabla inv1.a_payment_transactions
-DROP TABLE IF EXISTS `a_payment_transactions`;
-CREATE TABLE IF NOT EXISTS `a_payment_transactions` (
-  `Payment_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Ref_ID` varchar(20) DEFAULT NULL,
-  `Type` enum('sales','purchase') DEFAULT NULL,
-  `Customer` varchar(20) DEFAULT NULL,
-  `Supplier` varchar(20) DEFAULT NULL,
-  `Sub_Total` double NOT NULL DEFAULT 0,
-  `Payment` double NOT NULL DEFAULT 0,
-  `Balance` double NOT NULL DEFAULT 0,
-  `Due_Date` date DEFAULT NULL,
-  `Date_Transaction` date DEFAULT NULL,
-  `Date_Added` datetime DEFAULT NULL,
-  `Added_By` varchar(50) DEFAULT NULL,
-  `Date_Updated` datetime DEFAULT NULL,
-  `Updated_By` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`Payment_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Volcando datos para la tabla inv1.a_payment_transactions: ~0 rows (aproximadamente)
-DELETE FROM `a_payment_transactions`;
-/*!40000 ALTER TABLE `a_payment_transactions` DISABLE KEYS */;
-/*!40000 ALTER TABLE `a_payment_transactions` ENABLE KEYS */;
-
--- Volcando estructura para tabla inv1.a_purchases
-DROP TABLE IF EXISTS `a_purchases`;
-CREATE TABLE IF NOT EXISTS `a_purchases` (
-  `Purchase_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Purchase_Number` varchar(20) NOT NULL,
-  `Purchase_Date` datetime NOT NULL,
-  `Supplier_ID` varchar(20) NOT NULL,
-  `Notes` varchar(50) DEFAULT NULL,
-  `Total_Amount` double(20,0) DEFAULT 0,
-  `Total_Payment` double(20,0) DEFAULT 0,
-  `Total_Balance` double(20,0) DEFAULT 0,
-  `Date_Added` datetime DEFAULT NULL,
-  `Added_By` varchar(50) DEFAULT NULL,
-  `Date_Updated` datetime DEFAULT NULL,
-  `Updated_By` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`Purchase_ID`),
-  KEY `TSupplierTBeli` (`Supplier_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Volcando datos para la tabla inv1.a_purchases: ~0 rows (aproximadamente)
-DELETE FROM `a_purchases`;
-/*!40000 ALTER TABLE `a_purchases` DISABLE KEYS */;
-/*!40000 ALTER TABLE `a_purchases` ENABLE KEYS */;
-
--- Volcando estructura para tabla inv1.a_purchases_detail
-DROP TABLE IF EXISTS `a_purchases_detail`;
-CREATE TABLE IF NOT EXISTS `a_purchases_detail` (
-  `Purchase_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Purchase_Number` varchar(20) NOT NULL,
-  `Supplier_Number` varchar(20) NOT NULL,
-  `Stock_Item` varchar(15) NOT NULL,
-  `Purchasing_Quantity` double(20,0) NOT NULL DEFAULT 0,
-  `Purchasing_Price` double(20,0) NOT NULL DEFAULT 0,
-  `Selling_Price` double(20,0) NOT NULL DEFAULT 0,
-  `Purchasing_Total_Amount` double(20,0) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`Purchase_ID`),
-  KEY `TBarangTDBeli` (`Stock_Item`),
-  KEY `TBeliTDBeli` (`Purchase_Number`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Volcando datos para la tabla inv1.a_purchases_detail: ~0 rows (aproximadamente)
-DELETE FROM `a_purchases_detail`;
-/*!40000 ALTER TABLE `a_purchases_detail` DISABLE KEYS */;
-/*!40000 ALTER TABLE `a_purchases_detail` ENABLE KEYS */;
-
--- Volcando estructura para tabla inv1.a_sales
-DROP TABLE IF EXISTS `a_sales`;
-CREATE TABLE IF NOT EXISTS `a_sales` (
-  `Sales_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Sales_Number` varchar(20) NOT NULL,
-  `Sales_Date` datetime NOT NULL,
-  `Customer_ID` varchar(20) NOT NULL,
-  `Notes` varchar(50) DEFAULT NULL,
-  `Total_Amount` double DEFAULT 0,
-  `Total_Payment` double DEFAULT 0,
-  `Total_Balance` double DEFAULT 0,
-  `Discount_Type` char(1) DEFAULT NULL,
-  `Discount_Percentage` double DEFAULT 0,
-  `Discount_Amount` double DEFAULT 0,
-  `Tax_Percentage` double DEFAULT 0,
-  `Tax_Amount` double DEFAULT 0,
-  `Tax_Description` varchar(50) DEFAULT NULL,
-  `Final_Total_Amount` double DEFAULT 0,
-  `Date_Added` datetime DEFAULT NULL,
-  `Added_By` varchar(50) DEFAULT NULL,
-  `Date_Updated` datetime DEFAULT NULL,
-  `Updated_By` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`Sales_ID`),
-  UNIQUE KEY `NoFaktur` (`Sales_Number`),
-  KEY `TCustomerTJual` (`Customer_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Volcando datos para la tabla inv1.a_sales: ~0 rows (aproximadamente)
-DELETE FROM `a_sales`;
-/*!40000 ALTER TABLE `a_sales` DISABLE KEYS */;
-/*!40000 ALTER TABLE `a_sales` ENABLE KEYS */;
-
--- Volcando estructura para tabla inv1.a_sales_detail
-DROP TABLE IF EXISTS `a_sales_detail`;
-CREATE TABLE IF NOT EXISTS `a_sales_detail` (
-  `Sales_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Sales_Number` varchar(20) NOT NULL,
-  `Supplier_Number` varchar(20) NOT NULL,
-  `Stock_Item` varchar(15) NOT NULL,
-  `Sales_Quantity` double NOT NULL DEFAULT 0,
-  `Purchasing_Price` double NOT NULL DEFAULT 0,
-  `Sales_Price` double NOT NULL DEFAULT 0,
-  `Sales_Total_Amount` double NOT NULL DEFAULT 0,
-  PRIMARY KEY (`Sales_ID`),
-  KEY `TBarangTDJual` (`Stock_Item`),
-  KEY `TJualTDJual` (`Sales_Number`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Volcando datos para la tabla inv1.a_sales_detail: ~0 rows (aproximadamente)
-DELETE FROM `a_sales_detail`;
-/*!40000 ALTER TABLE `a_sales_detail` DISABLE KEYS */;
-/*!40000 ALTER TABLE `a_sales_detail` ENABLE KEYS */;
-
--- Volcando estructura para tabla inv1.a_stock_categories
-DROP TABLE IF EXISTS `a_stock_categories`;
-CREATE TABLE IF NOT EXISTS `a_stock_categories` (
-  `Category_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Category_Name` varchar(20) NOT NULL,
-  PRIMARY KEY (`Category_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Volcando datos para la tabla inv1.a_stock_categories: ~0 rows (aproximadamente)
-DELETE FROM `a_stock_categories`;
-/*!40000 ALTER TABLE `a_stock_categories` DISABLE KEYS */;
-/*!40000 ALTER TABLE `a_stock_categories` ENABLE KEYS */;
-
--- Volcando estructura para tabla inv1.a_stock_items
-DROP TABLE IF EXISTS `a_stock_items`;
-CREATE TABLE IF NOT EXISTS `a_stock_items` (
-  `Stock_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Supplier_Number` varchar(20) NOT NULL,
-  `Stock_Number` varchar(15) NOT NULL,
-  `Stock_Name` varchar(50) NOT NULL,
-  `Unit_Of_Measurement` varchar(20) NOT NULL,
-  `Category` int(11) NOT NULL,
-  `Purchasing_Price` double(20,0) NOT NULL DEFAULT 0,
-  `Selling_Price` double(20,0) NOT NULL DEFAULT 0,
-  `Notes` varchar(50) NOT NULL,
-  `Quantity` double(20,0) NOT NULL DEFAULT 0,
-  `Date_Added` datetime DEFAULT NULL,
-  `Added_By` varchar(50) DEFAULT NULL,
-  `Date_Updated` datetime DEFAULT NULL,
-  `Updated_By` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`Stock_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Volcando datos para la tabla inv1.a_stock_items: ~0 rows (aproximadamente)
-DELETE FROM `a_stock_items`;
-/*!40000 ALTER TABLE `a_stock_items` DISABLE KEYS */;
-/*!40000 ALTER TABLE `a_stock_items` ENABLE KEYS */;
-
--- Volcando estructura para tabla inv1.a_suppliers
-DROP TABLE IF EXISTS `a_suppliers`;
-CREATE TABLE IF NOT EXISTS `a_suppliers` (
-  `Supplier_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Supplier_Number` varchar(20) NOT NULL,
-  `Supplier_Name` varchar(50) NOT NULL,
-  `Address` text NOT NULL,
-  `City` varchar(20) NOT NULL,
-  `Country` varchar(50) NOT NULL,
-  `Contact_Person` varchar(50) NOT NULL,
-  `Phone_Number` varchar(50) NOT NULL,
-  `Email` varchar(100) NOT NULL,
-  `Mobile_Number` varchar(50) NOT NULL,
-  `Notes` text NOT NULL,
-  `Balance` double DEFAULT 0,
-  `Is_Stock_Available` enum('N','Y') NOT NULL DEFAULT 'N',
-  `Date_Added` datetime DEFAULT NULL,
-  `Added_By` varchar(50) DEFAULT NULL,
-  `Date_Updated` datetime DEFAULT NULL,
-  `Updated_By` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`Supplier_ID`),
-  UNIQUE KEY `KodeCust` (`Supplier_Number`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Volcando datos para la tabla inv1.a_suppliers: ~0 rows (aproximadamente)
-DELETE FROM `a_suppliers`;
-/*!40000 ALTER TABLE `a_suppliers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `a_suppliers` ENABLE KEYS */;
-
--- Volcando estructura para tabla inv1.a_unit_of_measurement
-DROP TABLE IF EXISTS `a_unit_of_measurement`;
-CREATE TABLE IF NOT EXISTS `a_unit_of_measurement` (
-  `UOM_ID` varchar(10) NOT NULL,
-  `UOM_Description` varchar(20) NOT NULL,
-  PRIMARY KEY (`UOM_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Volcando datos para la tabla inv1.a_unit_of_measurement: ~0 rows (aproximadamente)
-DELETE FROM `a_unit_of_measurement`;
-/*!40000 ALTER TABLE `a_unit_of_measurement` DISABLE KEYS */;
-/*!40000 ALTER TABLE `a_unit_of_measurement` ENABLE KEYS */;
-
 -- Volcando estructura para tabla inv1.balance
 DROP TABLE IF EXISTS `balance`;
 CREATE TABLE IF NOT EXISTS `balance` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT NULL,
+  `user_id` char(128) NOT NULL,
   `currency` varchar(50) DEFAULT NULL,
   `balance` varchar(50) DEFAULT NULL,
   `awaiting_deposit` varchar(50) DEFAULT NULL,
@@ -511,10 +281,37 @@ DELETE FROM `currency`;
 /*!40000 ALTER TABLE `currency` DISABLE KEYS */;
 /*!40000 ALTER TABLE `currency` ENABLE KEYS */;
 
+-- Volcando estructura para tabla inv1.customers
+DROP TABLE IF EXISTS `customers`;
+CREATE TABLE IF NOT EXISTS `customers` (
+  `Customer_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Customer_Number` varchar(20) NOT NULL,
+  `Customer_Name` varchar(50) NOT NULL,
+  `Address` text NOT NULL,
+  `City` varchar(50) NOT NULL,
+  `Country` varchar(30) NOT NULL,
+  `Contact_Person` varchar(50) NOT NULL,
+  `Phone_Number` varchar(50) NOT NULL,
+  `Email` varchar(100) NOT NULL,
+  `Mobile_Number` varchar(50) NOT NULL,
+  `Notes` varchar(50) NOT NULL,
+  `Balance` double DEFAULT 0,
+  `Date_Added` datetime DEFAULT NULL,
+  `Added_By` varchar(50) DEFAULT NULL,
+  `Date_Updated` datetime DEFAULT NULL,
+  `Updated_By` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`Customer_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla inv1.customers: ~0 rows (aproximadamente)
+DELETE FROM `customers`;
+/*!40000 ALTER TABLE `customers` DISABLE KEYS */;
+/*!40000 ALTER TABLE `customers` ENABLE KEYS */;
+
 -- Volcando estructura para tabla inv1.deleted_members
 DROP TABLE IF EXISTS `deleted_members`;
 CREATE TABLE IF NOT EXISTS `deleted_members` (
-  `id` char(23) NOT NULL,
+  `id` char(128) NOT NULL,
   `username` varchar(65) NOT NULL DEFAULT '',
   `password` varchar(65) NOT NULL DEFAULT '',
   `email` varchar(65) NOT NULL,
@@ -534,7 +331,7 @@ DELETE FROM `deleted_members`;
 DROP TABLE IF EXISTS `deposit`;
 CREATE TABLE IF NOT EXISTS `deposit` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` char(50) NOT NULL DEFAULT '0',
+  `user_id` char(128) NOT NULL DEFAULT '0',
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -598,7 +395,7 @@ DELETE FROM `exchange`;
 DROP TABLE IF EXISTS `exchanges`;
 CREATE TABLE IF NOT EXISTS `exchanges` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` varchar(64) DEFAULT NULL,
+  `uid` varchar(128) DEFAULT NULL,
   `wid` int(11) DEFAULT NULL,
   `gateway_send` int(11) DEFAULT NULL,
   `gateway_receive` int(11) DEFAULT NULL,
@@ -655,7 +452,7 @@ DELETE FROM `faq`;
 DROP TABLE IF EXISTS `finance`;
 CREATE TABLE IF NOT EXISTS `finance` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` char(50) NOT NULL DEFAULT '0',
+  `user_id` char(128) NOT NULL DEFAULT '0',
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -748,16 +545,16 @@ CREATE TABLE IF NOT EXISTS `gateways` (
   `default_send` int(11) DEFAULT NULL,
   `default_receive` int(11) DEFAULT NULL,
   `allow_payouts` int(11) DEFAULT NULL,
-  `a_field_1` varchar(255) DEFAULT NULL,
-  `a_field_2` varchar(255) DEFAULT NULL,
-  `a_field_3` varchar(255) DEFAULT NULL,
-  `a_field_4` varchar(255) DEFAULT NULL,
-  `a_field_5` varchar(255) DEFAULT NULL,
-  `a_field_6` varchar(255) DEFAULT NULL,
-  `a_field_7` varchar(255) DEFAULT NULL,
-  `a_field_8` varchar(255) DEFAULT NULL,
-  `a_field_9` varchar(255) DEFAULT NULL,
-  `a_field_10` varchar(255) DEFAULT NULL,
+  `field_1` varchar(255) DEFAULT NULL,
+  `field_2` varchar(255) DEFAULT NULL,
+  `field_3` varchar(255) DEFAULT NULL,
+  `field_4` varchar(255) DEFAULT NULL,
+  `field_5` varchar(255) DEFAULT NULL,
+  `field_6` varchar(255) DEFAULT NULL,
+  `field_7` varchar(255) DEFAULT NULL,
+  `field_8` varchar(255) DEFAULT NULL,
+  `field_9` varchar(255) DEFAULT NULL,
+  `field_10` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `external_gateway` int(11) NOT NULL DEFAULT 0,
   `external_icon` text DEFAULT NULL,
@@ -822,7 +619,7 @@ DELETE FROM `help_categories`;
 DROP TABLE IF EXISTS `history`;
 CREATE TABLE IF NOT EXISTS `history` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` char(50) NOT NULL DEFAULT '0',
+  `user_id` char(128) NOT NULL DEFAULT '0',
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -901,7 +698,7 @@ DELETE FROM `languages`;
 DROP TABLE IF EXISTS `last_transaction`;
 CREATE TABLE IF NOT EXISTS `last_transaction` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `user_id` char(128) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `status` varchar(50) NOT NULL,
   `send_amount` varchar(50) NOT NULL,
@@ -1005,7 +802,7 @@ DELETE FROM `mail_log`;
 -- Volcando estructura para tabla inv1.members
 DROP TABLE IF EXISTS `members`;
 CREATE TABLE IF NOT EXISTS `members` (
-  `id` char(23) NOT NULL,
+  `id` char(128) NOT NULL,
   `username` varchar(65) NOT NULL DEFAULT '',
   `password` varchar(255) NOT NULL DEFAULT '',
   `email` varchar(65) NOT NULL DEFAULT '',
@@ -1034,8 +831,8 @@ DELETE FROM `members`;
 DROP TABLE IF EXISTS `member_info`;
 CREATE TABLE IF NOT EXISTS `member_info` (
   `userid` char(128) NOT NULL,
-  `firstname` varchar(45) NOT NULL,
-  `lastname` varchar(55) DEFAULT NULL,
+  `firstname` varchar(60) NOT NULL,
+  `lastname` varchar(60) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `address1` varchar(45) DEFAULT NULL,
   `address2` varchar(45) DEFAULT NULL,
@@ -1058,7 +855,7 @@ DELETE FROM `member_info`;
 DROP TABLE IF EXISTS `member_jail`;
 CREATE TABLE IF NOT EXISTS `member_jail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` char(23) NOT NULL,
+  `user_id` char(128) NOT NULL,
   `banned_hours` float NOT NULL DEFAULT 24,
   `reason` varchar(2000) DEFAULT NULL,
   `timestamp` datetime NOT NULL DEFAULT current_timestamp(),
@@ -1077,7 +874,7 @@ DELETE FROM `member_jail`;
 DROP TABLE IF EXISTS `member_roles`;
 CREATE TABLE IF NOT EXISTS `member_roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `member_id` char(23) NOT NULL,
+  `member_id` char(128) NOT NULL,
   `role_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uq_unique_idx` (`member_id`,`role_id`),
@@ -1142,6 +939,31 @@ DELETE FROM `page`;
 /*!40000 ALTER TABLE `page` DISABLE KEYS */;
 /*!40000 ALTER TABLE `page` ENABLE KEYS */;
 
+-- Volcando estructura para tabla inv1.payment_transactions
+DROP TABLE IF EXISTS `payment_transactions`;
+CREATE TABLE IF NOT EXISTS `payment_transactions` (
+  `Payment_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Ref_ID` varchar(20) DEFAULT NULL,
+  `Type` enum('sales','purchase') DEFAULT NULL,
+  `Customer` varchar(20) DEFAULT NULL,
+  `Supplier` varchar(20) DEFAULT NULL,
+  `Sub_Total` double NOT NULL DEFAULT 0,
+  `Payment` double NOT NULL DEFAULT 0,
+  `Balance` double NOT NULL DEFAULT 0,
+  `Due_Date` date DEFAULT NULL,
+  `Date_Transaction` date DEFAULT NULL,
+  `Date_Added` datetime DEFAULT NULL,
+  `Added_By` varchar(50) DEFAULT NULL,
+  `Date_Updated` datetime DEFAULT NULL,
+  `Updated_By` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`Payment_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla inv1.payment_transactions: ~0 rows (aproximadamente)
+DELETE FROM `payment_transactions`;
+/*!40000 ALTER TABLE `payment_transactions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `payment_transactions` ENABLE KEYS */;
+
 -- Volcando estructura para tabla inv1.permissions
 DROP TABLE IF EXISTS `permissions`;
 CREATE TABLE IF NOT EXISTS `permissions` (
@@ -1190,13 +1012,58 @@ CREATE TABLE IF NOT EXISTS `profiles` (
   PRIMARY KEY (`idp`) USING BTREE,
   UNIQUE KEY `id` (`idp`) USING BTREE,
   UNIQUE KEY `phone` (`phone`),
-  CONSTRAINT `fk_users_ids` FOREIGN KEY (`idp`) REFERENCES `uverify` (`iduv`) ON DELETE CASCADE ON UPDATE NO ACTION
+  CONSTRAINT `fk_users_ids` FOREIGN KEY (`idp`) REFERENCES `uverify` (`iduv`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.profiles: ~0 rows (aproximadamente)
 DELETE FROM `profiles`;
 /*!40000 ALTER TABLE `profiles` DISABLE KEYS */;
 /*!40000 ALTER TABLE `profiles` ENABLE KEYS */;
+
+-- Volcando estructura para tabla inv1.purchases
+DROP TABLE IF EXISTS `purchases`;
+CREATE TABLE IF NOT EXISTS `purchases` (
+  `Purchase_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Purchase_Number` varchar(20) NOT NULL,
+  `Purchase_Date` datetime NOT NULL,
+  `Supplier_ID` varchar(20) NOT NULL,
+  `Notes` varchar(50) DEFAULT NULL,
+  `Total_Amount` double(20,0) DEFAULT 0,
+  `Total_Payment` double(20,0) DEFAULT 0,
+  `Total_Balance` double(20,0) DEFAULT 0,
+  `Date_Added` datetime DEFAULT NULL,
+  `Added_By` varchar(50) DEFAULT NULL,
+  `Date_Updated` datetime DEFAULT NULL,
+  `Updated_By` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`Purchase_ID`),
+  KEY `TSupplierTBeli` (`Supplier_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla inv1.purchases: ~0 rows (aproximadamente)
+DELETE FROM `purchases`;
+/*!40000 ALTER TABLE `purchases` DISABLE KEYS */;
+/*!40000 ALTER TABLE `purchases` ENABLE KEYS */;
+
+-- Volcando estructura para tabla inv1.purchases_detail
+DROP TABLE IF EXISTS `purchases_detail`;
+CREATE TABLE IF NOT EXISTS `purchases_detail` (
+  `Purchase_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Purchase_Number` varchar(20) NOT NULL,
+  `Supplier_Number` varchar(20) NOT NULL,
+  `Stock_Item` varchar(15) NOT NULL,
+  `Purchasing_Quantity` double(20,0) NOT NULL DEFAULT 0,
+  `Purchasing_Price` double(20,0) NOT NULL DEFAULT 0,
+  `Selling_Price` double(20,0) NOT NULL DEFAULT 0,
+  `Purchasing_Total_Amount` double(20,0) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`Purchase_ID`),
+  KEY `TBarangTDBeli` (`Stock_Item`),
+  KEY `TBeliTDBeli` (`Purchase_Number`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla inv1.purchases_detail: ~0 rows (aproximadamente)
+DELETE FROM `purchases_detail`;
+/*!40000 ALTER TABLE `purchases_detail` DISABLE KEYS */;
+/*!40000 ALTER TABLE `purchases_detail` ENABLE KEYS */;
 
 -- Volcando estructura para tabla inv1.roles
 DROP TABLE IF EXISTS `roles`;
@@ -1234,10 +1101,63 @@ DELETE FROM `role_permissions`;
 /*!40000 ALTER TABLE `role_permissions` DISABLE KEYS */;
 /*!40000 ALTER TABLE `role_permissions` ENABLE KEYS */;
 
+-- Volcando estructura para tabla inv1.sales
+DROP TABLE IF EXISTS `sales`;
+CREATE TABLE IF NOT EXISTS `sales` (
+  `Sales_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Sales_Number` varchar(20) NOT NULL,
+  `Sales_Date` datetime NOT NULL,
+  `Customer_ID` varchar(20) NOT NULL,
+  `Notes` varchar(50) DEFAULT NULL,
+  `Total_Amount` double DEFAULT 0,
+  `Total_Payment` double DEFAULT 0,
+  `Total_Balance` double DEFAULT 0,
+  `Discount_Type` char(1) DEFAULT NULL,
+  `Discount_Percentage` double DEFAULT 0,
+  `Discount_Amount` double DEFAULT 0,
+  `Tax_Percentage` double DEFAULT 0,
+  `Tax_Amount` double DEFAULT 0,
+  `Tax_Description` varchar(50) DEFAULT NULL,
+  `Final_Total_Amount` double DEFAULT 0,
+  `Date_Added` datetime DEFAULT NULL,
+  `Added_By` varchar(50) DEFAULT NULL,
+  `Date_Updated` datetime DEFAULT NULL,
+  `Updated_By` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`Sales_ID`),
+  UNIQUE KEY `NoFaktur` (`Sales_Number`),
+  KEY `TCustomerTJual` (`Customer_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla inv1.sales: ~0 rows (aproximadamente)
+DELETE FROM `sales`;
+/*!40000 ALTER TABLE `sales` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sales` ENABLE KEYS */;
+
+-- Volcando estructura para tabla inv1.sales_detail
+DROP TABLE IF EXISTS `sales_detail`;
+CREATE TABLE IF NOT EXISTS `sales_detail` (
+  `Sales_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Sales_Number` varchar(20) NOT NULL,
+  `Supplier_Number` varchar(20) NOT NULL,
+  `Stock_Item` varchar(15) NOT NULL,
+  `Sales_Quantity` double NOT NULL DEFAULT 0,
+  `Purchasing_Price` double NOT NULL DEFAULT 0,
+  `Sales_Price` double NOT NULL DEFAULT 0,
+  `Sales_Total_Amount` double NOT NULL DEFAULT 0,
+  PRIMARY KEY (`Sales_ID`),
+  KEY `TBarangTDJual` (`Stock_Item`),
+  KEY `TJualTDJual` (`Sales_Number`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla inv1.sales_detail: ~0 rows (aproximadamente)
+DELETE FROM `sales_detail`;
+/*!40000 ALTER TABLE `sales_detail` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sales_detail` ENABLE KEYS */;
+
 -- Volcando estructura para tabla inv1.secrets
 DROP TABLE IF EXISTS `secrets`;
 CREATE TABLE IF NOT EXISTS `secrets` (
-  `secretid` char(23) NOT NULL DEFAULT '',
+  `secretid` char(128) NOT NULL DEFAULT '',
   `userid` char(128) NOT NULL,
   `tokenusr` varchar(256) DEFAULT NULL,
   `hashusr` varchar(256) DEFAULT NULL,
@@ -1482,6 +1402,73 @@ DELETE FROM `stats_year`;
 /*!40000 ALTER TABLE `stats_year` DISABLE KEYS */;
 /*!40000 ALTER TABLE `stats_year` ENABLE KEYS */;
 
+-- Volcando estructura para tabla inv1.stock_categories
+DROP TABLE IF EXISTS `stock_categories`;
+CREATE TABLE IF NOT EXISTS `stock_categories` (
+  `Category_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Category_Name` varchar(20) NOT NULL,
+  PRIMARY KEY (`Category_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla inv1.stock_categories: ~0 rows (aproximadamente)
+DELETE FROM `stock_categories`;
+/*!40000 ALTER TABLE `stock_categories` DISABLE KEYS */;
+/*!40000 ALTER TABLE `stock_categories` ENABLE KEYS */;
+
+-- Volcando estructura para tabla inv1.stock_items
+DROP TABLE IF EXISTS `stock_items`;
+CREATE TABLE IF NOT EXISTS `stock_items` (
+  `Stock_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Supplier_Number` varchar(20) NOT NULL,
+  `Stock_Number` varchar(15) NOT NULL,
+  `Stock_Name` varchar(50) NOT NULL,
+  `Unit_Of_Measurement` varchar(20) NOT NULL,
+  `Category` int(11) NOT NULL,
+  `Purchasing_Price` double(20,0) NOT NULL DEFAULT 0,
+  `Selling_Price` double(20,0) NOT NULL DEFAULT 0,
+  `Notes` varchar(50) NOT NULL,
+  `Quantity` double(20,0) NOT NULL DEFAULT 0,
+  `Date_Added` datetime DEFAULT NULL,
+  `Added_By` varchar(50) DEFAULT NULL,
+  `Date_Updated` datetime DEFAULT NULL,
+  `Updated_By` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`Stock_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla inv1.stock_items: ~0 rows (aproximadamente)
+DELETE FROM `stock_items`;
+/*!40000 ALTER TABLE `stock_items` DISABLE KEYS */;
+/*!40000 ALTER TABLE `stock_items` ENABLE KEYS */;
+
+-- Volcando estructura para tabla inv1.suppliers
+DROP TABLE IF EXISTS `suppliers`;
+CREATE TABLE IF NOT EXISTS `suppliers` (
+  `Supplier_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Supplier_Number` varchar(20) NOT NULL,
+  `Supplier_Name` varchar(50) NOT NULL,
+  `Address` text NOT NULL,
+  `City` varchar(20) NOT NULL,
+  `Country` varchar(50) NOT NULL,
+  `Contact_Person` varchar(50) NOT NULL,
+  `Phone_Number` varchar(50) NOT NULL,
+  `Email` varchar(100) NOT NULL,
+  `Mobile_Number` varchar(50) NOT NULL,
+  `Notes` text NOT NULL,
+  `Balance` double DEFAULT 0,
+  `Is_Stock_Available` enum('N','Y') NOT NULL DEFAULT 'N',
+  `Date_Added` datetime DEFAULT NULL,
+  `Added_By` varchar(50) DEFAULT NULL,
+  `Date_Updated` datetime DEFAULT NULL,
+  `Updated_By` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`Supplier_ID`),
+  UNIQUE KEY `KodeCust` (`Supplier_Number`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla inv1.suppliers: ~0 rows (aproximadamente)
+DELETE FROM `suppliers`;
+/*!40000 ALTER TABLE `suppliers` DISABLE KEYS */;
+/*!40000 ALTER TABLE `suppliers` ENABLE KEYS */;
+
 -- Volcando estructura para tabla inv1.table_config
 DROP TABLE IF EXISTS `table_config`;
 CREATE TABLE IF NOT EXISTS `table_config` (
@@ -1563,6 +1550,19 @@ DELETE FROM `tokens`;
 /*!40000 ALTER TABLE `tokens` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tokens` ENABLE KEYS */;
 
+-- Volcando estructura para tabla inv1.unit_of_measurement
+DROP TABLE IF EXISTS `unit_of_measurement`;
+CREATE TABLE IF NOT EXISTS `unit_of_measurement` (
+  `UOM_ID` varchar(10) NOT NULL,
+  `UOM_Description` varchar(20) NOT NULL,
+  PRIMARY KEY (`UOM_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla inv1.unit_of_measurement: ~0 rows (aproximadamente)
+DELETE FROM `unit_of_measurement`;
+/*!40000 ALTER TABLE `unit_of_measurement` DISABLE KEYS */;
+/*!40000 ALTER TABLE `unit_of_measurement` ENABLE KEYS */;
+
 -- Volcando estructura para tabla inv1.userlevelpermissions
 DROP TABLE IF EXISTS `userlevelpermissions`;
 CREATE TABLE IF NOT EXISTS `userlevelpermissions` (
@@ -1594,7 +1594,7 @@ DELETE FROM `userlevels`;
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `idUser` char(128) NOT NULL,
-  `username` varchar(60) NOT NULL,
+  `username` varchar(65) NOT NULL,
   `email` varchar(256) NOT NULL,
   `password` varchar(256) NOT NULL,
   `verified` tinyint(1) NOT NULL DEFAULT 0,
@@ -1611,7 +1611,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `ID_user` (`idUser`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
-  CONSTRAINT `fk_users_verify` FOREIGN KEY (`idUser`) REFERENCES `uverify` (`iduv`) ON DELETE CASCADE ON UPDATE NO ACTION
+  CONSTRAINT `fk_users_verify` FOREIGN KEY (`idUser`) REFERENCES `uverify` (`iduv`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.users: ~0 rows (aproximadamente)
@@ -1657,11 +1657,11 @@ DELETE FROM `users_mk`;
 DROP TABLE IF EXISTS `users_shop`;
 CREATE TABLE IF NOT EXISTS `users_shop` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `username` char(10) NOT NULL,
+  `username` varchar(65) NOT NULL,
   `password1` varchar(255) NOT NULL,
   `password2` varchar(255) NOT NULL,
-  `firstname` char(10) NOT NULL,
-  `lastname` char(10) NOT NULL,
+  `firstname` char(60) NOT NULL,
+  `lastname` char(60) NOT NULL,
   `who` char(10) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `username` (`username`)
@@ -1675,10 +1675,10 @@ DELETE FROM `users_shop`;
 -- Volcando estructura para tabla inv1.users_sys
 DROP TABLE IF EXISTS `users_sys`;
 CREATE TABLE IF NOT EXISTS `users_sys` (
-  `Username` varchar(50) NOT NULL,
+  `Username` varchar(65) NOT NULL,
   `Password` varchar(64) NOT NULL,
-  `First_Name` varchar(50) DEFAULT NULL,
-  `Last_Name` varchar(50) DEFAULT NULL,
+  `First_Name` varchar(60) DEFAULT NULL,
+  `Last_Name` varchar(60) DEFAULT NULL,
   `Email` varchar(256) NOT NULL,
   `User_Level` int(11) DEFAULT NULL,
   `Report_To` int(11) DEFAULT NULL,
@@ -1724,8 +1724,8 @@ DELETE FROM `user_groups`;
 DROP TABLE IF EXISTS `user_info`;
 CREATE TABLE IF NOT EXISTS `user_info` (
   `userid` char(128) NOT NULL,
-  `firstname` varchar(45) NOT NULL,
-  `lastname` varchar(55) DEFAULT NULL,
+  `firstname` varchar(60) NOT NULL,
+  `lastname` varchar(60) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `address1` varchar(45) DEFAULT NULL,
   `address2` varchar(45) DEFAULT NULL,
@@ -1748,7 +1748,7 @@ DELETE FROM `user_info`;
 DROP TABLE IF EXISTS `uverify`;
 CREATE TABLE IF NOT EXISTS `uverify` (
   `iduv` char(128) NOT NULL,
-  `username` varchar(60) NOT NULL,
+  `username` varchar(65) NOT NULL,
   `email` varchar(256) NOT NULL,
   `password` varchar(256) NOT NULL,
   `mktoken` varchar(256) NOT NULL,
@@ -1841,7 +1841,7 @@ DROP TABLE IF EXISTS `volunteer`;
 CREATE TABLE IF NOT EXISTS `volunteer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(50) DEFAULT NULL,
-  `surname` varchar(50) DEFAULT NULL,
+  `lastname` varchar(50) DEFAULT NULL,
   `gender` enum('Woman','Male') DEFAULT NULL,
   `birthday` datetime DEFAULT NULL,
   `age` tinyint(2) DEFAULT NULL,
@@ -1878,7 +1878,7 @@ DELETE FROM `volunteer`;
 DROP VIEW IF EXISTS `vw_banned_users`;
 -- Creando tabla temporal para superar errores de dependencia de VIEW
 CREATE TABLE `vw_banned_users` (
-	`user_id` CHAR(23) NOT NULL COLLATE 'utf8_general_ci',
+	`user_id` CHAR(128) NOT NULL COLLATE 'utf8_general_ci',
 	`banned_timestamp` DATETIME NOT NULL,
 	`banned_hours` FLOAT NOT NULL,
 	`hours_remaining` DOUBLE NULL
@@ -1991,72 +1991,72 @@ DROP VIEW IF EXISTS `view_purchases_details`;
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `view_purchases_details`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `view_purchases_details` AS SELECT
-a_purchases_detail.Purchase_ID,
-a_purchases_detail.Purchase_Number,
-a_purchases_detail.Supplier_Number,
-a_purchases_detail.Stock_Item,
-a_purchases_detail.Purchasing_Quantity,
-a_purchases_detail.Purchasing_Price,
-a_purchases_detail.Selling_Price,
-a_purchases_detail.Purchasing_Total_Amount
+purchases_detail.Purchase_ID,
+purchases_detail.Purchase_Number,
+purchases_detail.Supplier_Number,
+purchases_detail.Stock_Item,
+purchases_detail.Purchasing_Quantity,
+purchases_detail.Purchasing_Price,
+purchases_detail.Selling_Price,
+purchases_detail.Purchasing_Total_Amount
 FROM
-a_purchases_detail ;
+purchases_detail ;
 
 -- Volcando estructura para vista inv1.view_purchases_outstandings
 DROP VIEW IF EXISTS `view_purchases_outstandings`;
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `view_purchases_outstandings`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `view_purchases_outstandings` AS SELECT
-a_purchases.Purchase_ID,
-a_purchases.Purchase_Number,
-a_purchases.Purchase_Date,
-a_purchases.Supplier_ID,
-a_purchases.Notes,
-a_purchases.Total_Amount,
-a_purchases.Total_Payment,
-a_purchases.Total_Balance
+purchases.Purchase_ID,
+purchases.Purchase_Number,
+purchases.Purchase_Date,
+purchases.Supplier_ID,
+purchases.Notes,
+purchases.Total_Amount,
+purchases.Total_Payment,
+purchases.Total_Balance
 FROM
-a_purchases 
-WHERE a_purchases.Total_Balance <> 0 ;
+purchases 
+WHERE purchases.Total_Balance <> 0 ;
 
 -- Volcando estructura para vista inv1.view_sales_details
 DROP VIEW IF EXISTS `view_sales_details`;
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `view_sales_details`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `view_sales_details` AS SELECT
-a_sales_detail.Sales_ID,
-a_sales_detail.Sales_Number,
-a_sales_detail.Supplier_Number,
-a_sales_detail.Stock_Item,
-a_sales_detail.Sales_Quantity,
-a_sales_detail.Purchasing_Price,
-a_sales_detail.Sales_Price,
-a_sales_detail.Sales_Total_Amount
+sales_detail.Sales_ID,
+sales_detail.Sales_Number,
+sales_detail.Supplier_Number,
+sales_detail.Stock_Item,
+sales_detail.Sales_Quantity,
+sales_detail.Purchasing_Price,
+sales_detail.Sales_Price,
+sales_detail.Sales_Total_Amount
 FROM
-a_sales_detail ;
+sales_detail ;
 
 -- Volcando estructura para vista inv1.view_sales_outstandings
 DROP VIEW IF EXISTS `view_sales_outstandings`;
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `view_sales_outstandings`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `view_sales_outstandings` AS SELECT
-a_sales.Sales_ID,
-a_sales.Sales_Number,
-a_sales.Sales_Date,
-a_sales.Customer_ID,
-a_sales.Notes,
-a_sales.Total_Amount,
-a_sales.Total_Payment,
-a_sales.Total_Balance,
-a_sales.Discount_Type,
-a_sales.Discount_Percentage,
-a_sales.Discount_Amount,
-a_sales.Tax_Percentage,
-a_sales.Tax_Description,
-a_sales.Final_Total_Amount
+sales.Sales_ID,
+sales.Sales_Number,
+sales.Sales_Date,
+sales.Customer_ID,
+sales.Notes,
+sales.Total_Amount,
+sales.Total_Payment,
+sales.Total_Balance,
+sales.Discount_Type,
+sales.Discount_Percentage,
+sales.Discount_Amount,
+sales.Tax_Percentage,
+sales.Tax_Description,
+sales.Final_Total_Amount
 FROM
-a_sales 
-WHERE a_sales.Total_Balance <> 0 ;
+sales 
+WHERE sales.Total_Balance <> 0 ;
 
 -- Volcando estructura para vista inv1.vw_banned_users
 DROP VIEW IF EXISTS `vw_banned_users`;
