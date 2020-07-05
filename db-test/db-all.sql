@@ -15,8 +15,7 @@
 DROP TABLE IF EXISTS `active_guests`;
 CREATE TABLE IF NOT EXISTS `active_guests` (
   `ip` varchar(15) NOT NULL,
-  `timestamp` int(11) unsigned NOT NULL,
-  PRIMARY KEY (`ip`)
+  `timestamp` int(11) unsigned NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.active_guests: ~0 rows (aproximadamente)
@@ -28,8 +27,7 @@ DELETE FROM `active_guests`;
 DROP TABLE IF EXISTS `active_users`;
 CREATE TABLE IF NOT EXISTS `active_users` (
   `username` varchar(30) NOT NULL,
-  `timestamp` int(11) unsigned NOT NULL,
-  PRIMARY KEY (`username`)
+  `timestamp` int(11) unsigned NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.active_users: ~0 rows (aproximadamente)
@@ -43,11 +41,7 @@ CREATE TABLE IF NOT EXISTS `admins` (
   `adminid` char(23) NOT NULL DEFAULT 'uuid_short();',
   `userid` char(128) NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT 0,
-  `superadmin` tinyint(1) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`adminid`,`userid`),
-  UNIQUE KEY `adminid_UNIQUE` (`adminid`),
-  UNIQUE KEY `userid_UNIQUE` (`userid`),
-  CONSTRAINT `fk_userid_admins` FOREIGN KEY (`userid`) REFERENCES `members` (`id`) ON UPDATE CASCADE
+  `superadmin` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.admins: ~0 rows (aproximadamente)
@@ -58,7 +52,7 @@ DELETE FROM `admins`;
 -- Volcando estructura para tabla inv1.announcement
 DROP TABLE IF EXISTS `announcement`;
 CREATE TABLE IF NOT EXISTS `announcement` (
-  `Announcement_ID` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `Announcement_ID` int(11) unsigned NOT NULL,
   `Is_Active` enum('N','Y') NOT NULL DEFAULT 'N',
   `Topic` varchar(50) NOT NULL,
   `Message` mediumtext NOT NULL,
@@ -69,8 +63,7 @@ CREATE TABLE IF NOT EXISTS `announcement` (
   `Date_End` datetime DEFAULT NULL,
   `Date_Created` datetime DEFAULT NULL,
   `Created_By` varchar(200) DEFAULT NULL,
-  `Translated_ID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`Announcement_ID`)
+  `Translated_ID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.announcement: ~0 rows (aproximadamente)
@@ -87,9 +80,7 @@ CREATE TABLE IF NOT EXISTS `app_config` (
   `category` varchar(25) NOT NULL,
   `type` varchar(15) NOT NULL,
   `description` varchar(140) DEFAULT NULL,
-  `required` tinyint(1) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`setting`),
-  UNIQUE KEY `setting_UNIQUE` (`setting`)
+  `required` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.app_config: ~0 rows (aproximadamente)
@@ -100,7 +91,7 @@ DELETE FROM `app_config`;
 -- Volcando estructura para tabla inv1.balance
 DROP TABLE IF EXISTS `balance`;
 CREATE TABLE IF NOT EXISTS `balance` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `user_id` char(128) NOT NULL,
   `currency` varchar(50) DEFAULT NULL,
   `balance` varchar(50) DEFAULT NULL,
@@ -109,8 +100,7 @@ CREATE TABLE IF NOT EXISTS `balance` (
   `est_USD` varchar(50) DEFAULT NULL,
   `deposit` varchar(50) DEFAULT NULL,
   `withdrawal` varchar(50) DEFAULT NULL,
-  `history` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `history` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.balance: ~0 rows (aproximadamente)
@@ -138,8 +128,7 @@ CREATE TABLE IF NOT EXISTS `breadcrumblinks` (
   `Page_Title` varchar(100) NOT NULL,
   `Page_URL` varchar(100) NOT NULL,
   `Lft` int(4) NOT NULL,
-  `Rgt` int(4) NOT NULL,
-  PRIMARY KEY (`Page_Title`)
+  `Rgt` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.breadcrumblinks: ~0 rows (aproximadamente)
@@ -162,7 +151,7 @@ DELETE FROM `category`;
 -- Volcando estructura para tabla inv1.cols_set
 DROP TABLE IF EXISTS `cols_set`;
 CREATE TABLE IF NOT EXISTS `cols_set` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `table_name` varchar(50) DEFAULT NULL,
   `col_name` varchar(50) DEFAULT NULL,
   `type_input` varchar(50) DEFAULT NULL,
@@ -172,8 +161,7 @@ CREATE TABLE IF NOT EXISTS `cols_set` (
   `view_page` varchar(50) DEFAULT NULL,
   `delete_page` varchar(50) DEFAULT NULL,
   `search_text` varchar(50) DEFAULT NULL,
-  `col_set` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `col_set` varchar(150) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.cols_set: ~0 rows (aproximadamente)
@@ -185,8 +173,7 @@ DELETE FROM `cols_set`;
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE IF NOT EXISTS `comment` (
   `id` int(11) NOT NULL,
-  `message` varchar(250) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `message` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.comment: ~0 rows (aproximadamente)
@@ -198,8 +185,7 @@ DELETE FROM `comment`;
 DROP TABLE IF EXISTS `configuration`;
 CREATE TABLE IF NOT EXISTS `configuration` (
   `config_name` varchar(20) NOT NULL,
-  `config_value` varchar(250) NOT NULL,
-  KEY `config_name` (`config_name`)
+  `config_value` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.configuration: ~23 rows (aproximadamente)
@@ -238,9 +224,7 @@ CREATE TABLE IF NOT EXISTS `cookies` (
   `userid` char(128) NOT NULL,
   `tokenid` char(25) NOT NULL,
   `expired` tinyint(1) NOT NULL DEFAULT 0,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`userid`),
-  CONSTRAINT `userid` FOREIGN KEY (`userid`) REFERENCES `members` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.cookies: ~0 rows (aproximadamente)
@@ -251,11 +235,9 @@ DELETE FROM `cookies`;
 -- Volcando estructura para tabla inv1.countries
 DROP TABLE IF EXISTS `countries`;
 CREATE TABLE IF NOT EXISTS `countries` (
-  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `id` smallint(5) unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
-  `code` varchar(10) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
+  `code` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.countries: ~0 rows (aproximadamente)
@@ -266,14 +248,13 @@ DELETE FROM `countries`;
 -- Volcando estructura para tabla inv1.currency
 DROP TABLE IF EXISTS `currency`;
 CREATE TABLE IF NOT EXISTS `currency` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `coin` varchar(50) DEFAULT NULL,
   `name` varchar(50) DEFAULT NULL,
   `symbol` varchar(50) DEFAULT NULL,
   `rating` varchar(50) DEFAULT NULL,
   `total_supply` varchar(50) DEFAULT NULL,
-  `max_supply` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `max_supply` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.currency: ~0 rows (aproximadamente)
@@ -284,7 +265,7 @@ DELETE FROM `currency`;
 -- Volcando estructura para tabla inv1.customers
 DROP TABLE IF EXISTS `customers`;
 CREATE TABLE IF NOT EXISTS `customers` (
-  `Customer_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Customer_ID` int(11) NOT NULL,
   `Customer_Number` varchar(20) NOT NULL,
   `Customer_Name` varchar(50) NOT NULL,
   `Address` text NOT NULL,
@@ -299,8 +280,7 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `Date_Added` datetime DEFAULT NULL,
   `Added_By` varchar(50) DEFAULT NULL,
   `Date_Updated` datetime DEFAULT NULL,
-  `Updated_By` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`Customer_ID`)
+  `Updated_By` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.customers: ~0 rows (aproximadamente)
@@ -317,9 +297,7 @@ CREATE TABLE IF NOT EXISTS `deleted_members` (
   `email` varchar(65) NOT NULL,
   `verified` tinyint(1) NOT NULL DEFAULT 0,
   `banned` tinyint(1) NOT NULL DEFAULT 0,
-  `mod_timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
+  `mod_timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.deleted_members: ~0 rows (aproximadamente)
@@ -330,10 +308,9 @@ DELETE FROM `deleted_members`;
 -- Volcando estructura para tabla inv1.deposit
 DROP TABLE IF EXISTS `deposit`;
 CREATE TABLE IF NOT EXISTS `deposit` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `user_id` char(128) NOT NULL DEFAULT '0',
-  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id`)
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.deposit: ~0 rows (aproximadamente)
@@ -344,14 +321,13 @@ DELETE FROM `deposit`;
 -- Volcando estructura para tabla inv1.employee
 DROP TABLE IF EXISTS `employee`;
 CREATE TABLE IF NOT EXISTS `employee` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'primary key',
+  `id` int(11) NOT NULL COMMENT 'primary key',
   `employee_name` varchar(255) NOT NULL COMMENT 'employee name',
   `employee_lastname` varchar(255) NOT NULL COMMENT 'employee lastname',
   `employee_email` varchar(255) NOT NULL COMMENT 'employee email',
   `employee_phone` int(11) NOT NULL COMMENT 'employee phone',
   `employee_bridge` varchar(255) NOT NULL COMMENT 'employee bridge',
-  `employee_comments` varchar(255) NOT NULL COMMENT 'employee comments',
-  PRIMARY KEY (`id`)
+  `employee_comments` varchar(255) NOT NULL COMMENT 'employee comments'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.employee: ~0 rows (aproximadamente)
@@ -362,14 +338,13 @@ DELETE FROM `employee`;
 -- Volcando estructura para tabla inv1.eventlog
 DROP TABLE IF EXISTS `eventlog`;
 CREATE TABLE IF NOT EXISTS `eventlog` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) unsigned NOT NULL,
   `event` varchar(200) NOT NULL,
   `eventRowIdOrRef` varchar(20) DEFAULT NULL,
   `eventDesc` text DEFAULT NULL,
   `eventTable` varchar(20) DEFAULT NULL,
   `staffInCharge` bigint(20) unsigned NOT NULL,
-  `eventTime` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id`)
+  `eventTime` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.eventlog: ~0 rows (aproximadamente)
@@ -380,10 +355,9 @@ DELETE FROM `eventlog`;
 -- Volcando estructura para tabla inv1.exchange
 DROP TABLE IF EXISTS `exchange`;
 CREATE TABLE IF NOT EXISTS `exchange` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `exchange_name` varchar(100) DEFAULT NULL,
-  `trading_pairs` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `trading_pairs` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.exchange: ~0 rows (aproximadamente)
@@ -394,7 +368,7 @@ DELETE FROM `exchange`;
 -- Volcando estructura para tabla inv1.exchanges
 DROP TABLE IF EXISTS `exchanges`;
 CREATE TABLE IF NOT EXISTS `exchanges` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `uid` varchar(128) DEFAULT NULL,
   `wid` int(11) DEFAULT NULL,
   `gateway_send` int(11) DEFAULT NULL,
@@ -423,8 +397,7 @@ CREATE TABLE IF NOT EXISTS `exchanges` (
   `referral_id` varchar(255) NOT NULL DEFAULT '0',
   `referral_amount` varchar(255) DEFAULT NULL,
   `referral_currency` varchar(255) DEFAULT NULL,
-  `referral_status` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`)
+  `referral_status` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.exchanges: ~0 rows (aproximadamente)
@@ -435,12 +408,11 @@ DELETE FROM `exchanges`;
 -- Volcando estructura para tabla inv1.faq
 DROP TABLE IF EXISTS `faq`;
 CREATE TABLE IF NOT EXISTS `faq` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `question` varchar(255) DEFAULT NULL,
   `answer` text DEFAULT NULL,
   `created` timestamp NULL DEFAULT current_timestamp(),
-  `updated` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id`)
+  `updated` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.faq: ~0 rows (aproximadamente)
@@ -451,10 +423,9 @@ DELETE FROM `faq`;
 -- Volcando estructura para tabla inv1.finance
 DROP TABLE IF EXISTS `finance`;
 CREATE TABLE IF NOT EXISTS `finance` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `user_id` char(128) NOT NULL DEFAULT '0',
-  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id`)
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.finance: ~0 rows (aproximadamente)
@@ -465,10 +436,9 @@ DELETE FROM `finance`;
 -- Volcando estructura para tabla inv1.financial_institution
 DROP TABLE IF EXISTS `financial_institution`;
 CREATE TABLE IF NOT EXISTS `financial_institution` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `financial_institution` varchar(50) DEFAULT NULL,
-  `link` varchar(250) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `link` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.financial_institution: ~0 rows (aproximadamente)
@@ -479,11 +449,10 @@ DELETE FROM `financial_institution`;
 -- Volcando estructura para tabla inv1.follow
 DROP TABLE IF EXISTS `follow`;
 CREATE TABLE IF NOT EXISTS `follow` (
-  `follow_id` int(11) NOT NULL AUTO_INCREMENT,
+  `follow_id` int(11) NOT NULL,
   `sender` int(11) NOT NULL,
   `receiver` int(11) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`follow_id`)
+  `status` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.follow: ~0 rows (aproximadamente)
@@ -494,14 +463,12 @@ DELETE FROM `follow`;
 -- Volcando estructura para tabla inv1.forgot_pass
 DROP TABLE IF EXISTS `forgot_pass`;
 CREATE TABLE IF NOT EXISTS `forgot_pass` (
-  `idFgp` int(11) NOT NULL AUTO_INCREMENT,
+  `idFgp` int(11) NOT NULL,
   `username` varchar(128) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `email` varchar(128) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `password_key` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `create` timestamp NULL DEFAULT current_timestamp(),
-  `expire` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`idFgp`),
-  UNIQUE KEY `username` (`username`)
+  `expire` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.forgot_pass: ~0 rows (aproximadamente)
@@ -512,14 +479,12 @@ DELETE FROM `forgot_pass`;
 -- Volcando estructura para tabla inv1.forgot_pin
 DROP TABLE IF EXISTS `forgot_pin`;
 CREATE TABLE IF NOT EXISTS `forgot_pin` (
-  `idFgp` int(11) NOT NULL AUTO_INCREMENT,
+  `idFgp` int(11) NOT NULL,
   `username` varchar(128) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `email` varchar(128) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `pin_key` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `create` timestamp NULL DEFAULT current_timestamp(),
-  `expire` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`idFgp`) USING BTREE,
-  UNIQUE KEY `username` (`username`)
+  `expire` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.forgot_pin: ~0 rows (aproximadamente)
@@ -530,7 +495,7 @@ DELETE FROM `forgot_pin`;
 -- Volcando estructura para tabla inv1.gateways
 DROP TABLE IF EXISTS `gateways`;
 CREATE TABLE IF NOT EXISTS `gateways` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `currency` varchar(255) DEFAULT NULL,
   `reserve` varchar(255) DEFAULT NULL,
@@ -557,8 +522,7 @@ CREATE TABLE IF NOT EXISTS `gateways` (
   `field_10` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `external_gateway` int(11) NOT NULL DEFAULT 0,
-  `external_icon` text DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `external_icon` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.gateways: ~0 rows (aproximadamente)
@@ -569,11 +533,10 @@ DELETE FROM `gateways`;
 -- Volcando estructura para tabla inv1.gateways_fields
 DROP TABLE IF EXISTS `gateways_fields`;
 CREATE TABLE IF NOT EXISTS `gateways_fields` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `gateway_id` int(11) DEFAULT NULL,
   `field_name` varchar(255) DEFAULT NULL,
-  `field_number` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `field_number` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.gateways_fields: ~0 rows (aproximadamente)
@@ -592,8 +555,7 @@ CREATE TABLE IF NOT EXISTS `help` (
   `Order` int(11) NOT NULL,
   `Display_in_Page` varchar(100) NOT NULL,
   `Updated_By` varchar(20) DEFAULT NULL,
-  `Last_Updated` datetime DEFAULT NULL,
-  PRIMARY KEY (`Help_ID`)
+  `Last_Updated` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.help: ~0 rows (aproximadamente)
@@ -606,8 +568,7 @@ DROP TABLE IF EXISTS `help_categories`;
 CREATE TABLE IF NOT EXISTS `help_categories` (
   `Category_ID` int(11) NOT NULL,
   `Language` char(2) NOT NULL,
-  `Category_Description` varchar(100) NOT NULL,
-  PRIMARY KEY (`Category_ID`)
+  `Category_Description` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.help_categories: ~0 rows (aproximadamente)
@@ -618,10 +579,9 @@ DELETE FROM `help_categories`;
 -- Volcando estructura para tabla inv1.history
 DROP TABLE IF EXISTS `history`;
 CREATE TABLE IF NOT EXISTS `history` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `user_id` char(128) NOT NULL DEFAULT '0',
-  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id`)
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.history: ~0 rows (aproximadamente)
@@ -642,11 +602,7 @@ CREATE TABLE IF NOT EXISTS `info` (
   `mkpin` char(6) NOT NULL,
   `active` tinyint(1) NOT NULL,
   `banned` tinyint(1) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`),
-  UNIQUE KEY `username` (`username`),
-  UNIQUE KEY `email` (`email`)
+  `date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.info: ~0 rows (aproximadamente)
@@ -657,12 +613,11 @@ DELETE FROM `info`;
 -- Volcando estructura para tabla inv1.items
 DROP TABLE IF EXISTS `items`;
 CREATE TABLE IF NOT EXISTS `items` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL,
   `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `description` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.items: ~0 rows (aproximadamente)
@@ -685,8 +640,7 @@ CREATE TABLE IF NOT EXISTS `languages` (
   `Default_Money_Decimal_Point` varchar(5) DEFAULT NULL,
   `Terms_And_Condition_Text` text NOT NULL,
   `Announcement_Text` text NOT NULL,
-  `About_Text` text NOT NULL,
-  PRIMARY KEY (`Language_Code`)
+  `About_Text` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.languages: ~0 rows (aproximadamente)
@@ -707,8 +661,7 @@ CREATE TABLE IF NOT EXISTS `last_transaction` (
   `rate` varchar(50) NOT NULL,
   `total` varchar(50) NOT NULL,
   `fee` varchar(50) NOT NULL,
-  `acctions` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
+  `acctions` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.last_transaction: ~0 rows (aproximadamente)
@@ -737,8 +690,7 @@ CREATE TABLE IF NOT EXISTS `loginattempts` (
   `Attempts` int(11) NOT NULL,
   `LastLogin` datetime NOT NULL,
   `Username` varchar(65) DEFAULT NULL,
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`ID`)
+  `ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.loginattempts: ~0 rows (aproximadamente)
@@ -749,12 +701,11 @@ DELETE FROM `loginattempts`;
 -- Volcando estructura para tabla inv1.login_attempts
 DROP TABLE IF EXISTS `login_attempts`;
 CREATE TABLE IF NOT EXISTS `login_attempts` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `username` varchar(65) DEFAULT NULL,
   `ip` varchar(20) NOT NULL,
   `attempts` int(11) NOT NULL,
-  `lastlogin` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  `lastlogin` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.login_attempts: ~0 rows (aproximadamente)
@@ -765,15 +716,14 @@ DELETE FROM `login_attempts`;
 -- Volcando estructura para tabla inv1.mail
 DROP TABLE IF EXISTS `mail`;
 CREATE TABLE IF NOT EXISTS `mail` (
-  `mail_id` int(80) NOT NULL AUTO_INCREMENT,
+  `mail_id` int(80) NOT NULL,
   `Deleted` tinyint(1) NOT NULL DEFAULT 0,
   `UserTo` tinytext NOT NULL,
   `UserFrom` tinytext NOT NULL,
   `Subject` mediumtext NOT NULL,
   `Message` longtext NOT NULL,
   `status` text NOT NULL,
-  `SentDate` text NOT NULL,
-  PRIMARY KEY (`mail_id`) USING BTREE
+  `SentDate` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.mail: ~0 rows (aproximadamente)
@@ -784,14 +734,13 @@ DELETE FROM `mail`;
 -- Volcando estructura para tabla inv1.mail_log
 DROP TABLE IF EXISTS `mail_log`;
 CREATE TABLE IF NOT EXISTS `mail_log` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `type` varchar(45) NOT NULL DEFAULT 'generic',
   `status` varchar(45) DEFAULT NULL,
   `recipient` varchar(5000) DEFAULT NULL,
   `response` mediumtext NOT NULL,
   `isread` tinyint(1) NOT NULL DEFAULT 0,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id`)
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.mail_log: ~0 rows (aproximadamente)
@@ -977,9 +926,25 @@ CREATE TABLE IF NOT EXISTS `permissions` (
   UNIQUE KEY `name_UNIQUE` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla inv1.permissions: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla inv1.permissions: ~15 rows (aproximadamente)
 DELETE FROM `permissions`;
 /*!40000 ALTER TABLE `permissions` DISABLE KEYS */;
+INSERT INTO `permissions` (`id`, `name`, `description`, `category`, `required`) VALUES
+	(1, 'Verify Users', 'Administration permission allowing for the verification of new users', 'Users', 1),
+	(2, 'Delete Unverified Users', 'Administration permission allowing the deletion of unverified users', 'Users', 1),
+	(3, 'Ban Users', 'Moderation permission allowing the banning of users', 'Users', 1),
+	(4, 'Assign Roles to Users', 'Administration permission allowing the assignment of roles to users', 'Users', 1),
+	(5, 'Assign Users to Roles', 'Administration permission allowing the assignment of users to roles', 'Roles', 1),
+	(6, 'Create Roles', 'Administration permission allowing for the creation of new roles', 'Roles', 1),
+	(7, 'Delete Roles', 'Administration permission allowing for the deletion of roles', 'Roles', 1),
+	(8, 'Create Permissions', 'Administration permission allowing for the creation of new permissions', 'Permissions', 1),
+	(9, 'Delete Permissions', 'Administration permission allowing for the deletion of permissions', 'Permissions', 1),
+	(10, 'Assign Permissions to Roles', 'Administration permission allowing the assignment of permissions to roles', 'Roles', 1),
+	(11, 'Edit Site Config', 'Administration permission allowing the editing of core site configuration (dangerous)', 'Administration', 1),
+	(12, 'View Permissions', 'Administration permission allowing the viewing of all permissions', 'Permissions', 1),
+	(13, 'View Roles', 'Administration permission allowing for the viewing of all roles', 'Roles', 1),
+	(14, 'View Users', 'Administration permission allowing for the viewing of all users', 'Users', 1),
+	(15, 'Delete Users', 'Administration permission allowing for the deletion of users', 'Users', 1);
 /*!40000 ALTER TABLE `permissions` ENABLE KEYS */;
 
 -- Volcando estructura para tabla inv1.profiles
@@ -1078,9 +1043,13 @@ CREATE TABLE IF NOT EXISTS `roles` (
   UNIQUE KEY `default_role_UNIQUE` (`default_role`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla inv1.roles: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla inv1.roles: ~3 rows (aproximadamente)
 DELETE FROM `roles`;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` (`id`, `name`, `description`, `required`, `default_role`) VALUES
+	(1, 'Superadmin', 'Master administrator of site', 1, NULL),
+	(2, 'Admin', 'Site administrator', 1, NULL),
+	(3, 'Standard User', 'Default site role for standard users', 1, 1);
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 
 -- Volcando estructura para tabla inv1.role_permissions
@@ -1096,9 +1065,34 @@ CREATE TABLE IF NOT EXISTS `role_permissions` (
   CONSTRAINT `fk_Role_Id_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla inv1.role_permissions: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla inv1.role_permissions: ~24 rows (aproximadamente)
 DELETE FROM `role_permissions`;
 /*!40000 ALTER TABLE `role_permissions` DISABLE KEYS */;
+INSERT INTO `role_permissions` (`id`, `role_id`, `permission_id`) VALUES
+	(1, 1, 1),
+	(2, 1, 2),
+	(3, 1, 3),
+	(4, 1, 4),
+	(5, 1, 5),
+	(6, 1, 6),
+	(7, 1, 7),
+	(8, 1, 8),
+	(9, 1, 9),
+	(10, 1, 10),
+	(11, 1, 11),
+	(12, 1, 12),
+	(13, 1, 13),
+	(14, 1, 14),
+	(15, 1, 15),
+	(16, 2, 1),
+	(17, 2, 2),
+	(18, 2, 3),
+	(19, 2, 4),
+	(20, 2, 5),
+	(21, 2, 12),
+	(22, 2, 13),
+	(23, 2, 14),
+	(24, 2, 15);
 /*!40000 ALTER TABLE `role_permissions` ENABLE KEYS */;
 
 -- Volcando estructura para tabla inv1.sales
@@ -1300,6 +1294,62 @@ CREATE TABLE IF NOT EXISTS `settings` (
 DELETE FROM `settings`;
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
+
+-- Volcando estructura para tabla inv1.sl_permissions
+DROP TABLE IF EXISTS `sl_permissions`;
+CREATE TABLE IF NOT EXISTS `sl_permissions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `category` varchar(50) NOT NULL DEFAULT 'General',
+  `required` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `name_UNIQUE` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla inv1.sl_permissions: ~15 rows (aproximadamente)
+DELETE FROM `sl_permissions`;
+/*!40000 ALTER TABLE `sl_permissions` DISABLE KEYS */;
+INSERT INTO `sl_permissions` (`id`, `name`, `description`, `category`, `required`) VALUES
+	(1, 'Verify Users', 'Administration permission allowing for the verification of new users', 'Users', 1),
+	(2, 'Delete Unverified Users', 'Administration permission allowing the deletion of unverified users', 'Users', 1),
+	(3, 'Ban Users', 'Moderation permission allowing the banning of users', 'Users', 1),
+	(4, 'Assign Roles to Users', 'Administration permission allowing the assignment of roles to users', 'Users', 1),
+	(5, 'Assign Users to Roles', 'Administration permission allowing the assignment of users to roles', 'Roles', 1),
+	(6, 'Create Roles', 'Administration permission allowing for the creation of new roles', 'Roles', 1),
+	(7, 'Delete Roles', 'Administration permission allowing for the deletion of roles', 'Roles', 1),
+	(8, 'Create Permissions', 'Administration permission allowing for the creation of new permissions', 'Permissions', 1),
+	(9, 'Delete Permissions', 'Administration permission allowing for the deletion of permissions', 'Permissions', 1),
+	(10, 'Assign Permissions to Roles', 'Administration permission allowing the assignment of permissions to roles', 'Roles', 1),
+	(11, 'Edit Site Config', 'Administration permission allowing the editing of core site configuration (dangerous)', 'Administration', 1),
+	(12, 'View Permissions', 'Administration permission allowing the viewing of all permissions', 'Permissions', 1),
+	(13, 'View Roles', 'Administration permission allowing for the viewing of all roles', 'Roles', 1),
+	(14, 'View Users', 'Administration permission allowing for the viewing of all users', 'Users', 1),
+	(15, 'Delete Users', 'Administration permission allowing for the deletion of users', 'Users', 1);
+/*!40000 ALTER TABLE `sl_permissions` ENABLE KEYS */;
+
+-- Volcando estructura para tabla inv1.sl_roles
+DROP TABLE IF EXISTS `sl_roles`;
+CREATE TABLE IF NOT EXISTS `sl_roles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `required` tinyint(1) NOT NULL DEFAULT 0,
+  `default_role` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name_UNIQUE` (`name`),
+  UNIQUE KEY `default_role_UNIQUE` (`default_role`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla inv1.sl_roles: ~3 rows (aproximadamente)
+DELETE FROM `sl_roles`;
+/*!40000 ALTER TABLE `sl_roles` DISABLE KEYS */;
+INSERT INTO `sl_roles` (`id`, `name`, `description`, `required`, `default_role`) VALUES
+	(1, 'Superadmin', 'Master administrator of site', 1, NULL),
+	(2, 'Admin', 'Site administrator', 1, NULL),
+	(3, 'Standard User', 'Default site role for standard users', 1, 1);
+/*!40000 ALTER TABLE `sl_roles` ENABLE KEYS */;
 
 -- Volcando estructura para tabla inv1.social_link
 DROP TABLE IF EXISTS `social_link`;
@@ -1594,16 +1644,16 @@ DELETE FROM `userlevels`;
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `idUser` char(128) NOT NULL,
-  `username` varchar(65) NOT NULL,
+  `username` varchar(128) NOT NULL,
   `email` varchar(256) NOT NULL,
   `password` varchar(256) NOT NULL,
   `verified` tinyint(1) NOT NULL DEFAULT 0,
   `status` tinyint(1) NOT NULL DEFAULT 0,
   `ip` char(50) NOT NULL,
   `signup_time` text NOT NULL,
-  `email_verified` text NOT NULL,
-  `document_verified` int(11) NOT NULL,
-  `mobile_verified` int(11) NOT NULL,
+  `email_verified` varchar(128) NOT NULL DEFAULT '',
+  `document_verified` int(11) NOT NULL DEFAULT 0,
+  `mobile_verified` int(11) NOT NULL DEFAULT 0,
   `mkpin` char(6) DEFAULT NULL,
   `create_user` timestamp NOT NULL DEFAULT current_timestamp(),
   `update_user` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
@@ -1611,7 +1661,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `ID_user` (`idUser`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
-  CONSTRAINT `fk_users_verify` FOREIGN KEY (`idUser`) REFERENCES `uverify` (`iduv`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `FK_users_uverify` FOREIGN KEY (`idUser`) REFERENCES `uverify` (`iduv`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla inv1.users: ~0 rows (aproximadamente)
@@ -1757,12 +1807,12 @@ CREATE TABLE IF NOT EXISTS `uverify` (
   `mkpin` varchar(6) NOT NULL,
   `level` char(50) NOT NULL DEFAULT 'Guest',
   `recovery_phrase` varchar(128) NOT NULL,
-  `activation_code` char(128) NOT NULL,
+  `activation_code` varchar(128) NOT NULL,
   `password_key` varchar(256) NOT NULL,
   `pin_key` varchar(256) NOT NULL,
   `rp_active` tinyint(1) NOT NULL DEFAULT 0,
-  `is_activated` tinyint(1) NOT NULL,
-  `banned` tinyint(1) NOT NULL,
+  `is_activated` tinyint(1) NOT NULL DEFAULT 0,
+  `banned` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`iduv`),
   UNIQUE KEY `iduv` (`iduv`),
   UNIQUE KEY `username` (`username`),
@@ -1883,22 +1933,6 @@ CREATE TABLE `vw_banned_users` (
 	`banned_hours` FLOAT NOT NULL,
 	`hours_remaining` DOUBLE NULL
 ) ENGINE=MyISAM;
-
--- Volcando estructura para disparador inv1.add_admin
-DROP TRIGGER IF EXISTS `add_admin`;
-SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
-DELIMITER //
-CREATE TRIGGER add_admin AFTER INSERT ON members FOR EACH ROW BEGIN IF (NEW.admin = 1) THEN  INSERT INTO admins (adminid, userid, active, superadmin ) VALUES (uuid_short(), NEW.id, 1, 0 ); END IF; END//
-DELIMITER ;
-SET SQL_MODE=@OLDTMP_SQL_MODE;
-
--- Volcando estructura para disparador inv1.add_admin_beforeUpdate
-DROP TRIGGER IF EXISTS `add_admin_beforeUpdate`;
-SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
-DELIMITER //
-CREATE TRIGGER add_admin_beforeUpdate BEFORE UPDATE ON members FOR EACH ROW BEGIN set @s = (SELECT superadmin from admins where userid = NEW.id); set @a = (SELECT adminid from admins where userid = NEW.id); IF (NEW.admin = 1 && isnull(@a)) THEN INSERT INTO admins ( adminid, userid, active, superadmin ) VALUES ( uuid_short(), NEW.id, 1, 0 ); ELSEIF (NEW.admin = 0) THEN IF (@s = 0) THEN DELETE FROM admins WHERE userid = NEW.id and superadmin = 0; ELSEIF (@s = 1) THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Cannot delete superadmin'; END IF; END IF; END//
-DELIMITER ;
-SET SQL_MODE=@OLDTMP_SQL_MODE;
 
 -- Volcando estructura para disparador inv1.assign_default_role
 DROP TRIGGER IF EXISTS `assign_default_role`;

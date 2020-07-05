@@ -11,26 +11,22 @@ class CheckValidUser {
         $stmt->bind_param("ss", $id, $hash);
         $stmt->execute();
         $result = $stmt->get_result();
+        $nums = $result->num_rows;
         $urw = $result->fetch_assoc();
-
-        /*
-         * $stmt->store_result();
-         */
-        if ($result->num_rows === 1) {
+        $stmt->close();
+        if ($nums === 1) {
             define('USERS_NAMES', $urw['firstname']);
             define('USERS_lASTNAMES', $urw['lastname']);
-            define('USERS_FULLNAMES', $urw['firstname'].' '.$urw['lastname']);
+            define('USERS_FULLNAMES', $urw['firstname'] . ' ' . $urw['lastname']);
             define('USERS_AVATARS', $urw['avatar']);
             define('USERS_SKILLS', $urw['profession']);
             define('USERS_CURRENTS_OCCUPATION', $urw['occupation']);
-        } else {            
+        } else {
             unset($_SESSION['user_id']);
             unset($_SESSION['level']);
             unset($_SESSION['hash']);
             session_destroy(); // Destroy all session data.
         }
-
-        $stmt->close();
     }
 
 }

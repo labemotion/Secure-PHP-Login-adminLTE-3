@@ -6,7 +6,6 @@
  * Logout - logOut()
  * Password recovery - forgotPassword(), newPassword(), updatePassword()
  * User creation - Registration()
- * User e-mail verification - Verify()
  */
 
 class UserClass {
@@ -58,7 +57,6 @@ class UserClass {
     private function ende_crypter($action, $string, $secret_key, $secret_iv) {
         $output = false;
         $encrypt_method = 'AES-256-CBC';
-
 // hash
         $key = hash('sha256', $secret_key);
 // iv - encrypt method AES-256-CBC expects 16 bytes - else you will get a warning
@@ -105,49 +103,43 @@ class UserClass {
                     $stmt = $conn->prepare("SELECT * FROM uverify WHERE email = ? AND mkpin = ?");
                     $stmt->bind_param("ss", $useremail, $userpin);
                     $stmt->execute();
-                    if ($stmt->num_rows === 0) {
+                    //fetching result would go here, but will be covered later
+                    $result = $stmt->get_result();
+                    if ($result->num_rows === 0) {
                         $_SESSION['ErrorMessage'] = 'The data is wrong.';
                         header('Location: login.php');
                     }
-                    $result = $stmt->get_result();
                     $urw = $result->fetch_assoc();
-//fetching result would go here, but will be covered later
                     $stmt->close();
 
                     if (!empty($urw['password_key'])) {
                         $_SESSION['ErrorMessage'] = 'Your account is not active by request for password recovery, check your email or please contact support';
                         header("Location: login.php");
-                        exit();
                     }
                     if (!empty($urw['pin_key'])) {
                         $_SESSION['ErrorMessage'] = 'Your account is not active by request for PIN recovery, check your email or please contact support.';
                         header("Location: login.php");
-                        exit();
                     }
                     if ($urw['banned'] === 1) {
                         $_SESSION['ErrorMessage'] = 'Access could not be completed, account may be blocked, please contact support.';
                         header("Location: login.php");
-                        exit();
                     }
 
                     if ($urw['is_activated'] === 1 && $urw['banned'] === 0) {
                         $user = $urw['username'];
                         $cml = $urw['email'];
                         $passw = $urw['password'];
-                        $ban = $urw['banned'];
                         $level = $urw['level'];
                         $rpa = $urw['rp_active'];
-                        $actv = $urw['is_activated'];
                         $secret_key = $urw['mktoken'];
                         $secret_iv = $urw['mkkey'];
                         $secret_hs = $urw['mkhash'];
 
-                        $pass = $this->ende_crypter('encrypt', $userpsw, $secret_key, $secret_iv);
-
+                        $cus = $this->ende_crypter('encrypt', $user, $secret_key, $secret_iv);
+                        $pass = $this->ende_crypter('decrypt', $passw, $secret_key, $secret_iv);
                         $mail = $this->ende_crypter('encrypt', $cml, $secret_key, $secret_iv);
 
-                        if ($passw === $pass) {
-
+                        if ($userpsw === $pass) {
 
                             if ($rpa === 0) {
                                 $_SESSION['AlertMessage'] = 'Recovery phrase needs to be created for your safety.';
@@ -155,66 +147,67 @@ class UserClass {
                             }
 
                             $stmt1 = $conn->prepare("SELECT * FROM users WHERE username = ? AND email = ? AND password = ? AND mkpin = ?");
-                            $stmt1->bind_param("ssss", $user, $mail, $passw, $userpin);
+                            $stmt1->bind_param("ssss", $cus, $mail, $passw, $userpin);
                             $stmt1->execute();
-//fetching result would go here, but will be covered later
+                            //fetching result would go here, but will be covered later
                             $sqr = $stmt1->get_result();
                             if ($sqr->num_rows === 0) {
+                                echo 'Err 0';
                                 $_SESSION['ErrorMessage'] = 'The data is wrong.';
-                                header('Location: login.php');
+                                //header('Location: login.php');
                             }
                             $row = $sqr->fetch_assoc();
                             $stmt->close();
 
                             $iduv = $row['idUser'];
-                            $upas = $row['password'];
 
-                            function encKey($len = 32) {
+                            function randHash($len = 64) {
                                 return substr(sha1(openssl_random_pseudo_bytes(17)), - $len);
                             }
 
-                            $enck = enckey();
+                            $enck = randHash();
 
-                            $up1 = $conn->prepare("UPDATE uverify SET mkhash = ? WHERE iduv = ? AND password = ?");
-                            $up1->bind_param("sss", $enck, $iduv, $upas);
+                            $up1 = $conn->prepare("UPDATE uverify SET mkhash = ? WHERE iduv = ? AND password = ? AND mkhash = ?");
+                            $up1->bind_param("ssss", $enck, $iduv, $passw, $secret_hs);
                             $up1->execute();
                             $inst1 = $up1->affected_rows;
                             $up1->close();
 
-                            $pro = $conn->prepare("UPDATE profiles SET mkhash = ? WHERE idp = ? AND mkhash = ?");
-                            $pro->bind_param("sss", $enck, $iduv, $secret_hs);
-                            $pro->execute();
-                            $inst2 = $pro->affected_rows;
-                            $pro->close();
+                            if ($inst1 === 1) {
 
-                            if ($inst1 === 1 && $inst2 === 1) {
-                                $_SESSION['user_id'] = $row['idUser'];
+                                $_SESSION['user_id'] = $iduv;
                                 $_SESSION['language'] = $row['language'];
                                 $_SESSION['levels'] = $level;
                                 $_SESSION['hash'] = $enck;
-                                $_SESSION['SuccessMessage'] = 'Congratulations you now have access!';
+
+                                $pro = $conn->prepare("UPDATE profiles SET mkhash = ? WHERE idp = ? AND mkhash = ?");
+                                $pro->bind_param("sss", $enck, $iduv, $secret_hs);
+                                $pro->execute();
+                                $inst2 = $pro->affected_rows;
+                                $pro->close();
+                                if ($inst2 === 1) {
+
+                                    $_SESSION['SuccessMessage'] = 'Congratulations you now have access!';
+                                }
                             } else {
-                                $_SESSION['ErrorMessage'] = 'Access error!';
+
                                 session_destroy();
+                                $_SESSION['ErrorMessage'] = 'Access error!';
                             }
-
-
-                            header("Location: index.php");
                         } else {
+
                             $_SESSION['ErrorMessage'] = 'Invalid username or password.';
                             header("Location: login.php");
-                            exit();
                         }
                     } else {
-                        $_SESSION['ErrorMessage'] = 'your account is not active, some process is incomplete, please contact support.';
+
+                        $_SESSION['ErrorMessage'] = 'Your account is not active, some process is incomplete, please contact support.';
                         header("Location: login.php");
-                        exit();
                     }
                 } else {
+                    echo 'Err 4';
                     $_SESSION['ErrorMessage'] = 'The PIN is not numeric or is not complete.';
                     header("Location: login.php");
-                    exit();
-// header("Location: login.php");
                 }
             }
         }
@@ -328,52 +321,6 @@ class UserClass {
             echo 'you are uptodate';
         }
     }
-
-    public function Verify() {
-// Require credentials for DB connection.
-        global $conn;
-        if (isset($_GET['id']) && isset($_GET['code']) && isset($_GET['hash'])) {
-            if (empty($_GET['id']) && empty($_GET['code']) && empty($_GET['hash'])) {
-// Variables for Verify()
-                $user_email = htmlspecialchars($_GET['id']);
-                $act_code = htmlspecialchars($_GET['code']);
-                $hash_code = htmlspecialchars($_GET['hash']);
-
-// Cross-reference e-mail and activation_code in database with values from URL.
-                $stmt = $conn->prepare("SELECT * FROM uverify WHERE email = ? AND mkhash = ? AND activation_code = ?");
-                $stmt->bind_param("sss", $user_email, $hash_code, $activation_code);
-                $stmt->execute();
-                $result = $stmt->get_result();
-                $stmt->close();
-// If e-mail and activation_code exist and are correct then update user is_activated value.
-                if ($result->num_rows == 1) {
-
-                    function encKey($len = 32) {
-                        return substr(sha1(openssl_random_pseudo_bytes(17)), - $len);
-                    }
-
-                    $nhash = encKey();
-                    $verified = 1;
-                    $bann = 0;
-                    $cclean = 'NULL';
-                    $stmt1 = $conn->prepare("UPDATE uverify SET mkhash = ?, is_activated = ?, banned = ? activation_code = ? WHERE email = ? AND mkhash = ? AND  activation_code = ?");
-                    $stmt1->bind_param("siissss", $nhash, $verified, $bann, $cclean, $user_email, $hash_code, $act_code);
-                    $stmt1->execute();
-                    $stmt1->close();
-                    return TRUE;
-                } else {
-                    return FALSE;
-                }
-            } else {
-                header('Location: index.php');
-            }
-            $conn->close();
-        } else {
-            header('Location: index.php');
-        }
-    }
-
-    /* End Verify() */
 
     public function isValidUsername($username) {
         if (strlen($username) < 3) {

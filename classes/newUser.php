@@ -35,13 +35,13 @@ class newUser {
 
     public function checkUsername($username) {
         global $conn;
-        $num = $conn->query("SELECT username FROM users WHERE username='$username'")->num_rows;
+        $num = $conn->query("SELECT username FROM uverify WHERE username='$username'")->num_rows;
         return $num;
     }
 
     public function checkEmail($email) {
         global $conn;
-        $num = $conn->query("SELECT email FROM users WHERE email='$email'")->num_rows;
+        $num = $conn->query("SELECT email FROM uverify WHERE email='$email'")->num_rows;
         return $num;
     }
 
@@ -68,17 +68,17 @@ class newUser {
 
 // message for incomplete field or actions
             if (empty($username) || empty($email) || empty($password) || empty($repassword)) {
-                $_SESSION['ErrorMessage'] = "¡Complete los campos o casillas!";
+                $_SESSION['ErrorMessage'] = "Fill in the fields or boxes!";
             } elseif (!$this->risValidUsername($username)) {
-                $_SESSION['ErrorMessage'] = "¡Ingrese un usuario valido!";
+                $_SESSION['ErrorMessage'] = "Please enter a valid user!";
             } elseif ($this->checkUsername($username) > 0) {
-                $_SESSION['ErrorMessage'] = "¡El usuario ya existe!";
+                $_SESSION['ErrorMessage'] = "User already exists!";
             } elseif (!$this->risValidEmail($email)) {
-                $_SESSION['ErrorMessage'] = "¡Ingrese un correo electronico valido!";
+                $_SESSION['ErrorMessage'] = "Enter a valid email address!";
             } elseif ($this->checkEmail($email) > 0) {
-                $_SESSION['ErrorMessage'] = "¡El correo electronico ya existe!";
-            } elseif ($password !== $repassword) {
-                $_SESSION['ErrorMessage'] = "¡La contreseña no coincide!";
+                $_SESSION['ErrorMessage'] = "Email already exists!";
+            } elseif ($password != $repassword) {
+                $_SESSION['ErrorMessage'] = "The password does not match!";
             } else {
 // check first if the password are identical
                 if ($password === $repassword) {
@@ -98,10 +98,9 @@ class newUser {
                         return substr(sha1(openssl_random_pseudo_bytes(17)), - $len);
                     }
 
-                    $ekey = randHash();
+                    $ekey = randToken();
                     $eiv = randkey();
-// enckey maker
-                    $enck = randToken();
+                    $enck = randHash();
 
                     define("ENCRYPT_METHOD", "AES-256-CBC");
                     define("SECRET_KEY", $ekey);
@@ -128,6 +127,7 @@ class newUser {
                     $newid = uniqid(rand(), false);
                     $pass = ende_crypter('encrypt', $password);
                     $cml = ende_crypter('encrypt', $email);
+                    $eusr = ende_crypter('encrypt', $username);
                     $pin = rand(000000, 999999);
                     $code = randkey();
                     $status = 0;
@@ -147,20 +147,19 @@ class newUser {
 // adding data in table users and info
                     $stmt = $conn->prepare("INSERT INTO users (idUser,username,email,password,status,ip,signup_time,email_verified,document_verified,mobile_verified) "
                             . "VALUES (?,?,?,?,?,?,?,?,?,?)");
-                    $stmt->bind_param("ssssisssii", $newid, $username, $cml, $pass, $status, $ip, $time, $code, $dvd, $mvd);
+                    $stmt->bind_param("ssssisssii", $newid, $eusr, $cml, $pass, $status, $ip, $time, $code, $dvd, $mvd);
                     $stmt->execute();
                     $inst1 = $stmt->affected_rows;
                     $stmt->close();
 
 // adding data in table info
-                    $info = $conn->prepare("INSERT INTO profiles(idp) VALUES (?)");
-                    $info->bind_param("s", $newid);
+                    $info = $conn->prepare("INSERT INTO profiles(idp,mkhash) VALUES (?,?)");
+                    $info->bind_param("ss", $newid, $enck);
                     $info->execute();
                     $inst3 = $info->affected_rows;
                     $info->close();
 
                     if ($inst1 === 1 && $inst2 === 1 && $inst3 === 1) {
-
 // message for PIN save                       
                         $query = $conn->prepare("SELECT * FROM uverify WHERE username=? AND email=? AND password=?");
                         $query->bind_param("sss", $username, $email, $pass);
@@ -170,6 +169,7 @@ class newUser {
                             $row = $result->fetch_assoc();
                             $upid = $row['iduv'];
                             $upin = $row['mkpin'];
+
                             $_SESSION['uid'] = $row['iduv'];
 
                             $this->updatePIN($upid, $upin);
@@ -186,6 +186,7 @@ class newUser {
                 }
             }
         }
+        $conn->close();
     }
 
     /*

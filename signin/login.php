@@ -6,6 +6,7 @@ require '../config/constants.php';
 require 'Autoload.php';
 $definitions = new SiteDefinitions();
 $login = new UserClass();
+$level = new AccessLevel();
 ?>
 <?php include '../elements/header.php'; ?>
 </head>
@@ -14,7 +15,7 @@ $login = new UserClass();
     if ($login->isLoggedIn() === true) {
         header('Location: ../users/profile.php');
     } else {
-         /* login-box */
+        /* login-box */
         include '../views/login.php';
     }
     ?>
