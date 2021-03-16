@@ -199,7 +199,7 @@ class newUser {
     private function sendEmail($email, $pin, $code, $enck) {
         $to = $email;
         $subject = "Your code to activate your account.";
-        $from = 'contact@labemotion.net'; // This should be changed to an email that you would like to send activation e-mail from.
+        $from = 'admin@fornicard.com'; // This should be changed to an email that you would like to send activation e-mail from.
         $body = 'Your access PIN code is: <b>' . $pin . '</b>' . "\r\n" . 'We recommend saving it, you do not need to access it with your password.' . "\r\n";
         $body .= 'To activate your account, click on the following link' . "\r\n" . ' <a href="' . $this->baseurl . '/verify.php?id=' . $email . '&code=' . $code . '&hash=' . $enck . '">Verify your email</a>' . "\r\n"; // Input the URL of your website.
         $body .= 'Login to your account and create your recovery phrase.';

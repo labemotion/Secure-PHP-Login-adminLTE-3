@@ -1,3 +1,14 @@
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+require '../config/constants.php';
+require 'Autoload.php';
+
+$login = new UserClass();
+$check = new CheckValidUser();
+$level = new AccessLevel();
+?>
 <?php include '../../elements/header.php' ?>    
 </head>
 <body class="hold-transition sidebar-mini">

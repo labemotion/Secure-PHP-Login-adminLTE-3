@@ -8,8 +8,23 @@ class SiteDefinitions {
         $result = $conn->query("SELECT config_name, config_value FROM configuration");
 
         while ($rowt = $result->fetch_array()) {
-            define($rowt['config_name'], $rowt['config_value']);
+            $values = $rowt['config_value'];
+            $names = $rowt['config_name'];
+            $vars[] = "define('" . $names . "', '" . $values . "');" . "\n";
         }
+
+        return implode(' ', $vars) . "\n";
+        /*
+          $definefiles = PATH_SYS.'classes/define.php';
+          if (!file_exists($definefiles)) {
+          $ndef = '<?php'. "\n";
+          $ndef .= implode(' ', $vars). "\n";
+          $ndef .= '?>'. "\n";
+          file_put_contents($definefiles, $ndef, FILE_APPEND | LOCK_EX);
+          }
+          include PATH_SYS.'classes/define.php';
+         * 
+         */
     }
 
 }

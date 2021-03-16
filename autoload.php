@@ -19,4 +19,9 @@ class Autoload {
 }
 
 spl_Autoload_register('Autoload::loader');
+/*
+spl_autoload_register(function($className) {
+	include_once $_SERVER['DOCUMENT_ROOT'] . '/classes/' . $className . '.php';
+});
+ */
 ?>

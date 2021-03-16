@@ -4,7 +4,7 @@ if (!isset($_SESSION)) {
 }
 require 'config/constants.php';
 require 'Autoload.php';
-$definitions = new SiteDefinitions();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -4,7 +4,7 @@ if (!isset($_SESSION)) {
 }
 require '../config/constants.php';
 require 'Autoload.php';
-$definitions = new SiteDefinitions();
+
 $verify = new UserVerify();
 ?>
 <?php include '../elements/header.php'; ?>
